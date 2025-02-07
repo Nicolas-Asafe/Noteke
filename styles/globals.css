@@ -101,3 +101,19 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+.anima{
+  animation: Appear 0.3s ease;
+}
+
+@keyframes Appear {
+  from {
+    opacity: 0;
+    transform: translateY(50%) scale(0);
+  }
+  to {
+    transform: translateY(0%) scale(1);
+    opacity: 100%;
+  }
+}
