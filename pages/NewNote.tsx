@@ -51,9 +51,9 @@ export default function Home() {
   };
 
   return (
-    <div className=" anima flex flex-col h-screen text-center p-5 justify-center items-center">
+    <div className=" anima flex flex-col h-screen text-center p-5 md:justify-center items-center">
+        <h1 className="font-semibold text-2xl mb-3 self-start">Create a new note here</h1> 
       <nav className="flex flex-row justify-between items-center w-full mb-4">
-        <h1 className="font-semibold text-2xl">Create a new note here</h1>
         <div className="flex gap-2">
           <button
             className="bg-zinc-900 border border-neutral-800 p-2 rounded-md text-2xl hover:border-neutral-500 hover:bg-zinc-800 transition"
@@ -94,7 +94,7 @@ export default function Home() {
         placeholder="Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        className="w-full bg-neutral-950 mt-3 p-3 resize-none border outline-none text-2xl h-4/5 rounded-md border-neutral-900 hover:border-neutral-600 transition"
+        className="w-full bg-neutral-950 mt-3 p-3 resize-none border outline-none text-2xl h-4/5 h-3/5 rounded-md border-neutral-900 hover:border-neutral-600 transition"
       ></textarea>
     </div>
   );
