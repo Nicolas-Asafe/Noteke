@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </div>
  
       {/* BottomBar */}
-      <nav className="md:hidden rounded-xl p-2 fixed bottom-0 w-11/12 self-center flex justify-center bg-neutral-950 border border-zinc-900">
+      <nav className="md:hidden rounded-xl p-2 fixed bottom-2 w-11/12 self-center flex justify-center bg-neutral-950 border border-zinc-900">
         <div className="flex w-full justify-around p-2">
           <Link href={'/'} className="text-zinc-400 hover:text-white">
             <Home size={24} />
