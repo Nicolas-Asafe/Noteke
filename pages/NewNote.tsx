@@ -94,7 +94,7 @@ export default function Home() {
         placeholder="Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        className="w-full bg-neutral-950 mt-3 p-3 resize-none border outline-none text-2xl h-4/5 h-3/5 rounded-md border-neutral-900 hover:border-neutral-600 transition"
+        className="w-full bg-neutral-950 mt-3 p-3 resize-none border outline-none text-2xl h-3/5 rounded-md border-neutral-900 hover:border-neutral-600 transition"
       ></textarea>
     </div>
   );
