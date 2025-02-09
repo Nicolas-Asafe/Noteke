@@ -1,4 +1,4 @@
-import { Trash2, Edit, Plus,SendHorizontal,X } from "lucide-react";
+import { Trash2, Edit, Plus, SendHorizontal, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -57,6 +57,42 @@ export default function Home() {
     setIsMessage(true);
   };
 
+  const handleShare = async (note: Note) => {
+    try {
+      const noteContent = {
+        title: note.title,
+        description: note.description
+      };
+      
+      const encodedNote = encodeURIComponent(JSON.stringify(noteContent));
+      const shareUrl = `${window.location.origin}/share?note=${encodedNote}`;
+      
+      // Verifica se o navegador suporta a API Web Share (comum em dispositivos móveis)
+      if (navigator.share) {
+        await navigator.share({
+          title: note.title,
+          text: 'Confira esta nota!',
+          url: shareUrl
+        });
+        
+        setColor("green");
+        setMessage("Nota compartilhada com sucesso!");
+        setIsMessage(true);
+      } else {
+        // Fallback para desktop - copia para área de transferência
+        await navigator.clipboard.writeText(shareUrl);
+        
+        setColor("green");
+        setMessage("Link copiado para área de transferência!");
+        setIsMessage(true);
+      }
+    } catch (error) {
+      setColor("red");
+      setMessage("Erro ao compartilhar a nota");
+      setIsMessage(true);
+    }
+  };
+
   return (
     <div className="md:anima flex flex-col w-full h-screen text-center p-5 items-center overflow-scroll mb-20 md:mb-0 animaMini ">
       {isMessage && <MessageContent message={message} color={color} />}
@@ -87,7 +123,7 @@ export default function Home() {
               </button>
 
               <button
-                onClick={() => handleNoteClick(note.id)}
+                onClick={() => handleShare(note)}
                 className="flex items-center bg-blue-600 text-white font-semibold p-2 rounded-md hover:bg-blue-700 transition"
               >
                 <SendHorizontal className="" scale={36}/> 
