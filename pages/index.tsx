@@ -39,11 +39,11 @@ export default function Home() {
       <div className="w-full max-w-2xl space-y-4">
         {notes.length > 0 ? (
           notes.map(note => (
-            <div key={note.id} className="flex justify-between items-start p-4 bg-neutral-950 border border-neutral-800 rounded-lg shadow-md text-left">
-              <div>
-              <h2 className="text-2xl font-bold mb-2">{note.title || "Untitled"}</h2>
-              <p className="text-lg text-zinc-400 mb-4">{note.description || "No description available."}</p>
-              </div>
+            <div key={note.id} className="flex justify-between items-center p-4 bg-neutral-950 border border-neutral-800 rounded-lg shadow-md text-left">
+              <div className="flex flex-col w-7/12">
+               <h2 style={{ maxWidth: "calc(100% - 0px)", }} className="truncate text-2xl font-bold mb-2">{note.title || "Untitled"}</h2>
+               <p style={{ maxWidth: "calc(100% - 0px)", }} className="truncate text-lg text-zinc-400 ">{note.description || "No description available."}</p>
+              </div> 
              <div className="flex flex-col gap-2">
              <button
                 onClick={() => handleDelete(note.id)}
