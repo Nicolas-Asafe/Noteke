@@ -45,7 +45,7 @@ export default function NoteEditor() {
   };
 
   return ( 
-    <div className="flex flex-col h-screen text-center p-5 md:justify-center items-center  anima ">
+    <div className="flex flex-col h-screen text-center p-5 md:justify-center items-center md:animaMini anima ">
       <input
         type="text"
         placeholder="Title"

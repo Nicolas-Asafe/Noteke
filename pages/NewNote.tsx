@@ -22,7 +22,7 @@ export default function Home() {
     };
 
     return (
-      <p className={`anima ${colorClasses[color as keyof typeof colorClasses]} border border-neutral-900 bg-black p-2 rounded-md font-semibold cursor-pointer transition absolute flex flex-row gap-4 items-center`}>
+      <p className={`anima ${colorClasses[color as keyof typeof colorClasses]} top-1/2  border border-neutral-900 bg-black p-2 rounded-md font-semibold cursor-pointer transition absolute flex flex-row gap-4 items-center`}>
           {message}
           <X onClick={CloseMessage} className="border border-neutral-900 rounded-md cursor-pointer" />
       </p>
@@ -56,6 +56,8 @@ export default function Home() {
     const existingNotes = JSON.parse(localStorage.getItem("notes") || "[]");
     const updatedNotes = [...existingNotes, newNote];
     localStorage.setItem("notes", JSON.stringify(updatedNotes));
+    setTitle("");
+    setDescription("");
     setColor("green");
     setMessage("Note saved successfully!");
     setIsMessage(true);
@@ -79,10 +81,11 @@ export default function Home() {
   };
  
   return (
-    <div className=" anima flex flex-col h-screen text-center p-5 md:justify-center items-center">
+    <div className="animaMini md:anima flex flex-col h-screen text-center p-5 md:justify-center items-center">
         <h1 className="font-semibold text-2xl mb-3 self-start">Create a new note here</h1> 
       <nav className="flex flex-row justify-between items-center w-full mb-4">
         <div className="flex gap-2">
+
           <button
             className="bg-zinc-900 border border-neutral-800 p-2 rounded-md text-2xl hover:border-neutral-500 hover:bg-zinc-800 transition"
             aria-label="Download note"

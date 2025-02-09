@@ -115,10 +115,24 @@ body {
 @keyframes Appear {
   from {
     opacity: 0;
-    transform: translateY(50%) scale(0);
+    transform: translatex(-10%);
   }
   to {
-    transform: translateY(0%) scale(1);
+    transform: translatex(0%) ;
+    opacity: 100%;
+  }
+}
+.animaMini{
+  animation: AppearMini 0.3s ease;
+}
+
+@keyframes AppearMini {
+  from {
+    opacity: 0;
+    transform: translatey(-10%);
+  }
+  to {
+    transform: translatey(0%) ;
     opacity: 100%;
   }
 }

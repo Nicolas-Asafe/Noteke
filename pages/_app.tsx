@@ -17,15 +17,15 @@ export default function App({ Component, pageProps }: AppProps) {
       </div>
  
       {/* BottomBar */}
-      <nav className="md:hidden rounded-xl p-2 fixed bottom-2 w-11/12 self-center flex justify-center bg-neutral-950 border border-zinc-900">
-        <div className="flex w-full justify-around p-2">
-          <Link href={'/'} className="text-zinc-400 hover:text-white">
+      <nav className="md:hidden rounded-md p-2 fixed bottom-2 w-11/12 self-center flex justify-center bg-neutral-950 border border-zinc-900">
+        <div className="flex w-full justify-around ">
+          <Link href={'/'} className="text-zinc-400 hover:text-white hover:bg-neutral-900 rounded-md p-2 transition">
             <Home size={24} />
           </Link>
-          <Link href={'/NewNote'} className="text-zinc-400 hover:text-white">
+          <Link href={'/NewNote'} className="text-zinc-400 hover:text-white hover:bg-neutral-900 rounded-md p-2 transition">
             <Plus size={24} />
           </Link>
-          <Link href={'/explorer'} className="text-zinc-400 hover:text-white">
+          <Link href={'/explorer'} className="text-zinc-400 hover:text-white hover:bg-neutral-900 rounded-md p-2 transition">
             <Search size={24} />
           </Link>
         </div>
