@@ -1,4 +1,4 @@
-import { Trash2, Eye } from "lucide-react";
+import { Trash2, Edit } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -56,7 +56,7 @@ export default function Home() {
                 onClick={() => handleNoteClick(note.id)}
                 className="flex items-center bg-green-600 text-white font-semibold px-4 py-2 rounded-md hover:bg-green-700 transition"
               >
-                <Eye className="mr-2" /> View
+                <Edit className="mr-2" /> Edit
               </button>
               
              </div>
