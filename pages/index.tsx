@@ -1,4 +1,4 @@
-import { Trash2, Edit } from "lucide-react";
+import { Trash2, Edit, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -63,10 +63,10 @@ export default function Home() {
             </div>
           ))
         ) : (
-          <>
+          <> 
             <Link href={'/NewNote'} className="text-white font-semibold text-2xl flex justify-between items-center p-3 bg-zinc-900 hover:bg-zinc-800 rounded-lg border border-neutral-800 hover:border-neutral-500 ">
-            Criar uma
-            <p className="text-zinc-400 sm:text-xl text-sm font-normal">Você não tem nenhuma nota</p> 
+            Create a note
+            <Plus className="ml-2" />
           </Link>
           </>
           

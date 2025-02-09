@@ -77,8 +77,8 @@ export default function SideBar() {
                     />
                   </li>
                 ))
-              ) : (
-                <p className="text-zinc-400">Nenhuma nota encontrada.</p>
+              ) : ( 
+                <p className="text-zinc-400">No note found.</p>
               )}
             </ul>
           </div>

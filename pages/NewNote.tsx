@@ -7,10 +7,27 @@ export default function Home() {
   const [description, setDescription] = useState<string>("");
   const [message, setMessage] = useState<string>("");
   const [isMessage, setIsMessage] = useState<boolean>(false);
+  const [color, setColor] = useState<string>("");   
+
 
   function CloseMessage() {
     setIsMessage(false);
   }
+
+  function MessageContent({message, color}: {message: string, color: string}) {
+    const colorClasses = {
+      red: "text-red-500",
+      green: "text-green-500",
+      amber: "text-amber-400",
+    };
+
+    return (
+      <p className={`anima ${colorClasses[color as keyof typeof colorClasses]} border border-neutral-900 bg-black p-2 rounded-md font-semibold cursor-pointer transition absolute flex flex-row gap-4 items-center`}>
+          {message}
+          <X onClick={CloseMessage} className="border border-neutral-900 rounded-md cursor-pointer" />
+      </p>
+    )
+  } 
 
   useEffect(() => {
     const savedNotes = JSON.parse(localStorage.getItem("notes") || "[]");
@@ -18,13 +35,15 @@ export default function Home() {
       setTitle(savedNotes[0].title);
       setDescription(savedNotes[0].description);
     }
-  }, []);
+  }, []);  
 
   const handleSave = () => {
     if (!title.trim() || !description.trim()) {
-      setMessage("Título e descrição são obrigatórios!");
-      setIsMessage(true);
+      setColor("red");
+      setMessage("Title and description are required!");
+      setIsMessage(true); 
       return;
+
     }
 
     const newNote = {
@@ -37,19 +56,28 @@ export default function Home() {
     const existingNotes = JSON.parse(localStorage.getItem("notes") || "[]");
     const updatedNotes = [...existingNotes, newNote];
     localStorage.setItem("notes", JSON.stringify(updatedNotes));
-    setMessage("Nota salva com sucesso!");
+    setColor("green");
+    setMessage("Note saved successfully!");
     setIsMessage(true);
+
   };
 
   const handleDownload = () => {
-    const noteToDownload = { title, description };
-    const blob = new Blob([JSON.stringify(noteToDownload, null, 2)], { type: 'application/json' });
+    const markdownContent = `# ${title}\n\n${description}`; 
+    
+    const blob = new Blob([markdownContent], { type: 'text/markdown' }); 
     const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `${title || "untitled"}.json`;
-    link.click();
-  };
 
+    link.href = URL.createObjectURL(blob);
+    link.download = `${title || "untitled"}.md`;
+    link.click();
+
+    setColor("amber");
+    setMessage("Note downloaded successfully!");
+    setIsMessage(true);
+
+  };
+ 
   return (
     <div className=" anima flex flex-col h-screen text-center p-5 md:justify-center items-center">
         <h1 className="font-semibold text-2xl mb-3 self-start">Create a new note here</h1> 
@@ -75,12 +103,12 @@ export default function Home() {
         </div>
       </nav>
 
-      {isMessage && message && (
-        <p className="anima text-green-500 border border-neutral-900 bg-black p-2 rounded-md font-semibold cursor-pointer transition absolute flex flex-row gap-4 items-center">
-          {message}
-          <X onClick={CloseMessage} className="border border-neutral-900 rounded-md cursor-pointer" />
-        </p>
+      {isMessage && message && color && (
+        <MessageContent message={message} color={color} />
       )}
+
+
+
 
       <input
         type="text"
