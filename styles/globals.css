@@ -104,6 +104,9 @@ body {
   }
 }
 
+::-webkit-scrollbar{
+  width: 0px;
+}
 
 .anima{
   animation: Appear 0.3s ease;
