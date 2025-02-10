@@ -23,11 +23,11 @@ export default function App({ Component, pageProps }: AppProps) {
       {/* BottomBar */}
       <div className="fixed bottom-0 left-0 right-0 md:hidden">
         <div className="mx-4 mb-4">
-          <div className="bg-neutral-950 border border-zinc-900 rounded-md p-2 flex justify-around items-center">
-            <Link href={'/'} className="p-3 text-zinc-400 hover:text-white hover:bg-neutral-900 rounded-md transition">
+          <div className="bg-neutral-950 border border-zinc-900 rounded-lg p-1 flex justify-around items-center">
+            <Link href={'/'} className="p-2 text-zinc-400 hover:text-white hover:bg-neutral-900 rounded-md transition">
               <Home size={24} />
             </Link>
-            <Link href={'/plugins'} className="p-3 text-zinc-400 hover:text-white hover:bg-neutral-900 rounded-md transition">
+            <Link href={'/plugins'} className="p-2 text-zinc-400 hover:text-white hover:bg-neutral-900 rounded-md transition">
               <Plug size={24} />
             </Link>
             
