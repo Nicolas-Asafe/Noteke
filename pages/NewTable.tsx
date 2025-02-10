@@ -55,11 +55,13 @@ export default function NewTable() {
     };
     
     return (
-      <div className="fixed left-0 right-0 top-0 bottom-0 md:left-64 flex items-center justify-center pointer-events-none z-50">
-        <p className={`animaMini ${colorClasses[color as keyof typeof colorClasses]} border border-neutral-900 bg-black p-2 rounded-md font-semibold cursor-pointer transition flex flex-row gap-4 items-center pointer-events-auto`}>
-          {message}
-          <X onClick={CloseMessage} className="border border-neutral-900 rounded-md cursor-pointer" />
-        </p>
+      <div className="fixed inset-0 flex items-center justify-center z-50">
+        <div className="md:ml-32">
+          <p className={`animaMini ${colorClasses[color as keyof typeof colorClasses]} border border-neutral-900 bg-black p-2 rounded-md font-semibold cursor-pointer transition flex flex-row gap-4 items-center`}>
+            {message}
+            <X onClick={CloseMessage} className="border border-neutral-900 rounded-md cursor-pointer" />
+          </p>
+        </div>
       </div>
     );
   }

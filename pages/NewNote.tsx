@@ -22,11 +22,15 @@ export default function Home() {
     };
 
     return (
-      <p className={`anima ${colorClasses[color as keyof typeof colorClasses]} top-1/2  border border-neutral-900 bg-black p-2 rounded-md font-semibold cursor-pointer transition absolute flex flex-row gap-4 items-center`}>
-          {message}
-          <X onClick={CloseMessage} className="border border-neutral-900 rounded-md cursor-pointer" />
-      </p>
-    )
+      <div className="fixed inset-0 flex items-center justify-center z-50">
+        <div className="md:ml-32">
+          <p className={`animaMini ${colorClasses[color as keyof typeof colorClasses]} border border-neutral-900 bg-black p-2 rounded-md font-semibold cursor-pointer transition flex flex-row gap-4 items-center`}>
+            {message}
+            <X onClick={CloseMessage} className="border border-neutral-900 rounded-md cursor-pointer" />
+          </p>
+        </div>
+      </div>
+    );
   } 
 
   useEffect(() => {
