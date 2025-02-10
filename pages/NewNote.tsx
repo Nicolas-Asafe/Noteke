@@ -81,7 +81,7 @@ export default function Home() {
   };
  
   return (
-    <div className="flex flex-col h-[calc(100vh-80px)] md:h-screen p-5">
+    <div className="flex flex-col h-[calc(100vh-80px)] md:h-screen p-5 animaMini">
       <div className="flex flex-col gap-4 mb-2">
         <div className="flex md:flex-row flex-col justify-between items-start gap-2 md:items-center">
           <h1 className="font-semibold text-2xl">Create a new note here</h1>
