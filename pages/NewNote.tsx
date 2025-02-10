@@ -81,52 +81,53 @@ export default function Home() {
   };
  
   return (
-    <div className="animaMini md:anima flex flex-col h-screen text-center p-5 md:justify-center items-center">
-        <h1 className="font-semibold text-2xl mb-3 self-start">Create a new note here</h1> 
-      <nav className="flex flex-row justify-between items-center w-full mb-4">
-        <div className="flex gap-2">
-
-          <button
-            className="bg-zinc-900 border border-neutral-800 p-2 rounded-md text-2xl hover:border-neutral-500 hover:bg-zinc-800 transition"
-            aria-label="Download note"
-            onClick={handleDownload}
-          >
-            <Download />
-          </button>
-          <button
-            className="bg-zinc-900 border border-neutral-800 p-2 rounded-md text-2xl hover:border-neutral-500 hover:bg-zinc-800 transition"
-            aria-label="Save note"
-            onClick={handleSave}
-          >
-            <Save />
-          </button>
-          <button className="bg-zinc-900 border border-neutral-800 p-2 rounded-md text-2xl hover:border-neutral-500 hover:bg-zinc-800 transition" aria-label="Change cover">
-            <Image />
-          </button>
+    <div className="flex flex-col h-[calc(100vh-80px)] md:h-screen p-5">
+      <div className="flex flex-col gap-4 mb-2">
+        <div className="flex md:flex-row flex-col justify-between items-start gap-2 md:items-center">
+          <h1 className="font-semibold text-2xl">Create a new note here</h1>
+          <div className="flex gap-2">
+            <button
+              className="bg-zinc-900 border border-neutral-800 p-2 rounded-md hover:border-neutral-500 hover:bg-zinc-800 transition"
+              aria-label="Download note"
+              onClick={handleDownload}
+            >
+              <Download />
+            </button>
+            <button
+              className="bg-zinc-900 border border-neutral-800 p-2 rounded-md hover:border-neutral-500 hover:bg-zinc-800 transition"
+              aria-label="Save note"
+              onClick={handleSave}
+            >
+              <Save />
+            </button>
+            <button 
+              className="bg-zinc-900 border border-neutral-800 p-2 rounded-md hover:border-neutral-500 hover:bg-zinc-800 transition" 
+              aria-label="Change cover"
+            >
+              <Image />
+            </button>
+          </div>
         </div>
-      </nav>
 
-      {isMessage && message && color && (
-        <MessageContent message={message} color={color} />
-      )}
+        <input
+          type="text"
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="w-full bg-neutral-950 p-3 text-xl outline-none border rounded-md border-neutral-900 hover:border-neutral-600 transition"
+        />
+      </div>
 
+      {isMessage && <MessageContent message={message} color={color} />}
 
-
-
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        className="w-full bg-neutral-950 p-3 text-3xl outline-none border rounded-md border-neutral-900 hover:border-neutral-600 transition"
-      />
-
-      <textarea
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        className="w-full bg-neutral-950 mt-3 p-3 resize-none border outline-none text-2xl h-3/5 rounded-md border-neutral-900 hover:border-neutral-600 transition"
-      ></textarea>
+      <div className="flex-1 min-h-0">
+        <textarea
+          placeholder="Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className="h-full w-full bg-neutral-950 p-3 resize-none border outline-none text-lg rounded-md border-neutral-900 hover:border-neutral-600 transition"
+        />
+      </div>
     </div>
   );
 }

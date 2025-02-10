@@ -20,8 +20,14 @@ body {
   background-color: #0e0e0e;
   color: #ededed;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding-bottom: 80px; /* para dispositivos móveis */
 }
 
+@media (min-width: 768px) {
+  body {
+    padding-bottom: 0; /* remove o padding em telas maiores */
+  }
+}
 
 @layer base {
   :root {
@@ -110,6 +116,7 @@ body {
 
 .anima{
   animation: Appear 0.3s ease;
+  z-index: 999999999999999999999999;
 }
 
 @keyframes Appear {
@@ -123,6 +130,7 @@ body {
   }
 }
 .animaMini{
+  z-index: 999999999999999999999999;
   animation: AppearMini 0.3s ease;
 }
 
@@ -134,5 +142,11 @@ body {
   to {
     transform: translatey(0%) ;
     opacity: 100%;
+  }
+}
+
+@layer utilities {
+  .pb-safe {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
   }
 }
