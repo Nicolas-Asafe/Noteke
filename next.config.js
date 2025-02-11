@@ -4,7 +4,8 @@ const nextConfig = {
   swcMinify: true,
   images: {
     unoptimized: true // Importante para build estática
-  }
+  },
+  output: 'export',
 };
 
 module.exports = nextConfig; 
