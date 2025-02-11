@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from 'next/router';
 
 interface Cell {
-  value: string;
+  value: string; 
   id: string;
 }
 

@@ -1,8 +1,10 @@
 import { Save, Image, Download, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import { useOrgs } from "@/contexts/OrgsContext";
 
 export default function Home() {
+  const { notes, updateNotes } = useOrgs();
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [message, setMessage] = useState<string>("");
@@ -47,7 +49,6 @@ export default function Home() {
       setMessage("Title and description are required!");
       setIsMessage(true); 
       return;
-
     }
 
     const newNote = {
@@ -57,15 +58,14 @@ export default function Home() {
       createdAt: new Date().toISOString(),
     };
 
-    const existingNotes = JSON.parse(localStorage.getItem("notes") || "[]");
-    const updatedNotes = [...existingNotes, newNote];
-    localStorage.setItem("notes", JSON.stringify(updatedNotes));
+    const updatedNotes = [...notes, newNote];
+    updateNotes(updatedNotes);
+    
     setTitle("");
     setDescription("");
     setColor("green");
     setMessage("Note saved successfully!");
     setIsMessage(true);
-
   };
 
   const handleDownload = () => {
@@ -129,7 +129,7 @@ export default function Home() {
           placeholder="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="h-full w-full bg-neutral-950 p-3 resize-none border outline-none text-lg rounded-md border-neutral-900 hover:border-neutral-600 transition"
+          className="md:h-[90%] h-[90%] w-full bg-neutral-950 p-3 resize-none border outline-none text-lg rounded-md border-neutral-900 hover:border-neutral-600 transition"
         />
       </div>
     </div>

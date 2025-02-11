@@ -20,7 +20,8 @@ body {
   background-color: #0e0e0e;
   color: #ededed;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  padding-bottom: 80px; /* para dispositivos móveis */
+  height: 100%;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
@@ -114,33 +115,34 @@ body {
   width: 0px;
 }
 
-.anima{
-  animation: Appear 0.3s ease;
+.anima {
+  animation: Appear 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 999999999999999999999999;
 }
 
 @keyframes Appear {
   from {
     opacity: 0;
-    transform: translatex(-10%);
+    transform: translatex(-5%);
   }
   to {
-    transform: translatex(0%) ;
+    transform: translatex(0%);
     opacity: 100%;
   }
 }
-.animaMini{
+
+.animaMini {
   z-index: 999999999999999999999999;
-  animation: AppearMini 0.3s ease;
+  animation: AppearMini 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes AppearMini {
   from {
     opacity: 0;
-    transform: translatey(-10%);
+    transform: translatey(-5%);
   }
   to {
-    transform: translatey(0%) ;
+    transform: translatey(0%);
     opacity: 100%;
   }
 }

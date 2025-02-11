@@ -1,28 +1,63 @@
-import { Trash2, Edit, Plus, SendHorizontal, X, Eye, Grid2X2Plus,FilePlus } from "lucide-react";
+import { Trash2, Edit, Plus, SendHorizontal, X, Eye, Grid2X2Plus,FilePlus, Table, ListChecks, GitBranch } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { MobileSidebar } from "@/components/MobileSidebar";
+import { getAvailableOrgs } from "@/utils/getOrgs";
+import { useOrgs } from "@/contexts/OrgsContext";
+import { isPluginEnabled, PLUGIN_IDS } from '@/utils/pluginManager';
 
-export default function Home() {
-  interface Note {
-    id: string;
-    title: string;
-    description: string;
-  }
+interface BaseItem {
+  id: string;
+  title: string;
+  createdAt: string;
+}
 
-  interface Table {
-    id: string;
-    title: string;
-    data: any[][];
-    createdAt: string;
-  }
+interface Note extends BaseItem {
+  type?: 'note';
+  description: string;
+}
 
+interface ChecklistItem {
+  id: string;
+  text: string;
+  checked: boolean;
+}
+
+interface Checklist extends BaseItem {
+  type: 'checklist';
+  items: ChecklistItem[];
+}
+
+interface Task {
+  id: string;
+  text: string;
+  status: 'todo' | 'doing' | 'done';
+}
+
+interface Workflow extends BaseItem {
+  type: 'workflow';
+  tasks: Task[];
+}
+
+interface Table extends BaseItem {
+  type: 'table';
+  data: any[][];
+}
+
+type OrgItem = Note | Checklist | Workflow | Table;
+
+export default function Home() {   
   const [message, setMessage] = useState<string>("");
   const [isMessage, setIsMessage] = useState<boolean>(false);
   const [color, setColor] = useState<string>("");   
 
-  const [notes, setNotes] = useState<Note[]>([]);
-  const [tables, setTables] = useState<Table[]>([]);
+  const { notes, tables, updateNotes, updateTables } = useOrgs();
+  const [availableOrgs, setAvailableOrgs] = useState<any[]>([]);
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+
+  const router = useRouter();
 
   function CloseMessage() {
     setIsMessage(false);
@@ -47,42 +82,68 @@ export default function Home() {
     );
   }
 
-  const router = useRouter();
-  const handleNoteClick = (id: string) => {
-    router.push(`/note/${id}`);
+  const handleItemClick = (item: OrgItem) => {
+    switch (item.type) {
+      case 'workflow':
+        if (!isPluginEnabled(PLUGIN_IDS.WORKFLOW)) {
+          setColor('amber');
+          setMessage('Workflow plugin not installed. Install it from the plugins page.');
+          setIsMessage(true);
+          return;
+        }
+        router.push(`/workflow/${item.id}`);
+        break;
+      case 'checklist':
+        if (!isPluginEnabled(PLUGIN_IDS.CHECKLIST)) {
+          setColor('amber');
+          setMessage('Checklist plugin not installed. Install it from the plugins page.');
+          setIsMessage(true);
+          return;
+        }
+        router.push(`/checklist/${item.id}`);
+        break;
+      case 'table':
+        router.push(`/NewTable?id=${item.id}`);
+        break;
+      default:
+        router.push(`/note/${item.id}`);
+    }
   };
 
   useEffect(() => {
-    const savedNotes = JSON.parse(localStorage.getItem("notes") || "[]");
-    const savedTables = JSON.parse(localStorage.getItem("tables") || "[]");
-    if (Array.isArray(savedNotes)) {
-      setNotes(savedNotes);
-    }
-    if (Array.isArray(savedTables)) {
-      setTables(savedTables);
-    }
+    setAvailableOrgs(getAvailableOrgs());
   }, []);
 
-  const handleDelete = (id: string) => {
-    const updatedNotes = notes.filter(note => note.id !== id);
-    setNotes(updatedNotes);
-    localStorage.setItem("notes", JSON.stringify(updatedNotes));
-    setColor("red");
-    setMessage("Note deleted successfully!");
-    setIsMessage(true);
-  };
+  useEffect(() => {
+    const handleGlobalClick = (e: MouseEvent) => {
+      if (isSidebarOpen) {
+        setIsSidebarOpen(false);
+      }
+    };
 
-  const handleTableClick = (id: string) => {
-    router.push(`/NewTable?id=${id}`);
-  };
+    document.addEventListener('click', handleGlobalClick);
+    return () => document.removeEventListener('click', handleGlobalClick);
+  }, [isSidebarOpen]);
 
-  const handleTableDelete = (id: string) => {
-    const updatedTables = tables.filter(table => table.id !== id);
-    setTables(updatedTables);
-    localStorage.setItem("tables", JSON.stringify(updatedTables));
-    setColor("red");
-    setMessage("Table deleted successfully!");
-    setIsMessage(true);
+  const handleDelete = (item: OrgItem) => {
+    try {
+      if ('data' in item) {
+        const updatedTables = tables.filter(table => table.id !== item.id);
+        updateTables(updatedTables);
+        setColor("red");
+        setMessage("Table deleted successfully!");
+      } else {
+        const updatedNotes = notes.filter(note => note.id !== item.id);
+        updateNotes(updatedNotes);
+        setColor("red");
+        setMessage(`${item.type || 'Note'} deleted successfully!`);
+      }
+      setIsMessage(true);
+    } catch (error) {
+      setColor("red");
+      setMessage("Error deleting item");
+      setIsMessage(true);
+    }
   };
 
   const handleShare = async (note: Note) => {
@@ -121,91 +182,136 @@ export default function Home() {
     }
   };
 
+  const getIcon = (iconName: string, size: number = 26) => {
+    switch (iconName) {
+      case 'Plus': return <Plus size={size} />;
+      case 'Table': return <Table size={size} />;
+      case 'ListChecks': return <ListChecks size={size} />;
+      case 'GitBranch': return <GitBranch size={size} />;
+      default: return <Plus size={size} />;
+    }
+  };
+
+  const handleOrgClick = (path: string) => {
+    router.push(path);
+  };
+
+  const getItemType = (item: OrgItem): string => {
+    if ('data' in item) return 'Table';
+    return item.type || 'Note';
+  };
+
   return (
-    <div className="md:anima w-full h-screen flex flex-col p-5 overflow-scroll mb-20 md:mb-0 animaMini">
+    <div className="anima md:animaMini w-full h-[calc(100vh-80px)] md:h-screen flex flex-col p-5 overflow-auto">
+      <MobileSidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+      
       {isMessage && <MessageContent message={message} color={color} />} 
       
       <div className="flex justify-between items-center w-full mb-4">
-        <h1 className="font-semibold text-3xl self-start">Your Orgs</h1>
-        <div className='flex gap-2'>
-          <Link href={`/NewTable`} className="bg-zinc-900 border border-neutral-800 p-2 rounded-md hover:border-neutral-500 hover:bg-zinc-800 transition">
-            <Grid2X2Plus size={26} />
-          </Link>
-          <Link href={`/NewNote`} className="bg-zinc-900 border border-neutral-800 p-2 rounded-md hover:border-neutral-500 hover:bg-zinc-800 transition">
-            <FilePlus size={26} />
-          </Link>
+        <div className="flex items-center gap-4">
+          <h1 className="font-semibold text-3xl">Your Orgs</h1>
         </div>
+        <div className='md:flex gap-2 hidden'>
+          {availableOrgs.map(org => (
+            <button 
+              key={org.id}
+              onClick={() => handleOrgClick(org.path)}
+              className="bg-zinc-900 border border-neutral-800 p-2 rounded-md hover:border-neutral-500 hover:bg-zinc-800 transition"
+              title={`Create new ${org.name.toLowerCase()}`}
+            >
+              {getIcon(org.icon)}
+            </button>
+          ))}
+        </div>
+        <button 
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsSidebarOpen(!isSidebarOpen);
+          }} 
+          className="md:hidden bg-zinc-900 border border-neutral-800 p-2 rounded-md hover:border-neutral-500 hover:bg-zinc-800 transition"
+        >
+          <Plus size={26} />
+        </button>
       </div>
 
-      <div className="flex-1 flex flex-col items-center">
-        <div className="w-full md:max-w-2xl space-y-4">
+      <div className="flex-1 flex flex-col items-center overflow-auto">
+        <div className="w-full md:max-w-2xl space-y-4 pb-20 md:pb-0">
           {[...notes, ...tables].sort((a, b) => {
-            const dateA = (b as any).createdAt || new Date().toISOString();
-            const dateB = (a as any).createdAt || new Date().toISOString();
+            const dateA = b.createdAt || new Date().toISOString();
+            const dateB = a.createdAt || new Date().toISOString();
             return new Date(dateA).getTime() - new Date(dateB).getTime();
-          }).map(item => (
-            'description' in item ? (
+          }).map((item: OrgItem) => {
+            return (
               <div key={item.id} className="md:flex-col md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-neutral-800 rounded-lg shadow-md text-left">
                 <div className="flex flex-col w-10/12 md:w-full">
-                 <h2 style={{ maxWidth: "calc(100% - 0px)", }} className="truncate text-2xl font-bold mb-2">{item.title || "Untitled"}</h2>
-                 <p style={{ maxWidth: "calc(100% - 0px)", }} className="h-28 md:h-auto pl-2 overflow-y-scroll  p-1 border border-neutral-800 rounded-md text-lg text-zinc-400 ">{item.description || "No description available."}</p>
-                </div> 
-                <div className="flex flex-col md:flex-row gap-2 border border-neutral-800 rounded-md p-2 w-auto">
-               <button
-                  onClick={() => handleDelete(item.id)}
-                  className="flex items-center bg-red-600 text-white font-semibold p-2 rounded-md hover:bg-red-700 transition"
-                >
-                  <Trash2 className="" scale={36}/> 
-                </button>
-
-                <button
-                  onClick={() => handleNoteClick(item.id)}
-                  className="flex items-center bg-green-600 text-white font-semibold p-2 rounded-md hover:bg-green-700 transition"
-                >
-                  <Edit className="" scale={36}/> 
-                </button>
-
-                <button
-                  onClick={() => handleShare(item as Note)}
-                  className="flex items-center bg-blue-600 text-white font-semibold p-2 rounded-md hover:bg-blue-700 transition"
-                >
-                  <SendHorizontal className="" scale={36}/> 
-                </button>
-                
-               </div>
-              </div>
-            ) : (
-              <div key={item.id} className="md:flex-col md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-neutral-800 rounded-lg shadow-md text-left">
-                <div className="flex flex-col w-10/12 md:w-full">
-                  <div className="flex items-center gap-2">
-                    <h2 className="truncate text-2xl font-bold">{item.title || "Untitled"}</h2>
-                    <span className="text-sm text-neutral-500">(Table)</span>
-                  </div>
-                  <p className="text-zinc-400">Created: {new Date(item.createdAt).toLocaleDateString()}</p>
+                  <h2 style={{ maxWidth: "calc(100% - 0px)", }} className="truncate text-2xl font-bold mb-2">
+                    {item.title || "Untitled"}
+                  </h2>
+                  {/* Renderiza o conteúdo apropriado baseado no tipo */}
+                  {item.type === 'checklist' ? (
+                    <div className="h-28 md:h-auto pl-2 overflow-y-scroll p-1 border border-neutral-800 rounded-md text-lg text-zinc-400">
+                      {item.items?.map(checkItem => (
+                        <div key={checkItem.id} className="flex items-center gap-2">
+                          <span className={checkItem.checked ? 'line-through' : ''}>
+                            {checkItem.text}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : item.type === 'workflow' ? (
+                    <div className="h-28 md:h-auto pl-2 overflow-y-scroll p-1 border border-neutral-800 rounded-md text-lg text-zinc-400">
+                      <div className="flex gap-4">
+                        <div>
+                          <p className="text-yellow-500">To Do: {item.tasks?.filter(t => t.status === 'todo').length || 0}</p>
+                        </div>
+                        <div>
+                          <p className="text-blue-500">Doing: {item.tasks?.filter(t => t.status === 'doing').length || 0}</p>
+                        </div>
+                        <div>
+                          <p className="text-green-500">Done: {item.tasks?.filter(t => t.status === 'done').length || 0}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ) : 'data' in item ? (
+                    <div className="h-28 md:h-auto pl-2 overflow-y-scroll p-1 border border-neutral-800 rounded-md text-lg text-zinc-400">
+                      {/* Preview da tabela */}
+                      Table preview
+                    </div>
+                  ) : (
+                    <p style={{ maxWidth: "calc(100% - 0px)", }} className="h-28 md:h-auto pl-2 overflow-y-scroll p-1 border border-neutral-800 rounded-md text-lg text-zinc-400">
+                      {item.description || "No description available."}
+                    </p>
+                  )}
                 </div>
                 <div className="flex flex-col md:flex-row gap-2 border border-neutral-800 rounded-md p-2 w-auto">
                   <button
-                    onClick={() => handleTableDelete(item.id)}
+                    onClick={() => handleDelete(item)}
                     className="flex items-center bg-red-600 text-white font-semibold p-2 rounded-md hover:bg-red-700 transition"
                   >
                     <Trash2 className="" scale={36}/> 
                   </button>
+
                   <button
-                    onClick={() => handleTableClick(item.id)}
+                    onClick={() => handleItemClick(item)}
                     className="flex items-center bg-green-600 text-white font-semibold p-2 rounded-md hover:bg-green-700 transition"
                   >
                     <Edit className="" scale={36}/> 
                   </button>
-                  <Link
-                    href={`/table/${item.id}`}
+
+                  <button
+                    onClick={() => handleShare(item as Note)}
                     className="flex items-center bg-blue-600 text-white font-semibold p-2 rounded-md hover:bg-blue-700 transition"
                   >
-                    <Eye className="" scale={36}/> 
-                  </Link>
+                    <SendHorizontal className="" scale={36}/> 
+                  </button>
+                  
+                  <span className="text-xs ml-2 text-neutral-500">
+                    ({getItemType(item)})
+                  </span>
                 </div>
               </div>
-            )
-          ))}
+            );
+          })}
           
           {notes.length === 0 && tables.length === 0 && (
             <div className="flex items-center justify-center h-[calc(100vh-200px)]">
