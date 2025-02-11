@@ -1,9 +1,14 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 export interface BaseItem {
   id: string;
   title: string;
   createdAt: string;
+}
+
+export interface Note extends BaseItem {
+  type?: 'note';
+  description: string;
 }
 
 export interface ChecklistItem {
@@ -12,20 +17,15 @@ export interface ChecklistItem {
   checked: boolean;
 }
 
+export interface Checklist extends BaseItem {
+  type: 'checklist';
+  items: ChecklistItem[];
+}
+
 export interface Task {
   id: string;
   text: string;
   status: 'todo' | 'doing' | 'done';
-}
-
-export interface Note extends BaseItem {
-  type?: 'note';
-  description: string;
-}
-
-export interface Checklist extends BaseItem {
-  type: 'checklist';
-  items: ChecklistItem[];
 }
 
 export interface Workflow extends BaseItem {
@@ -43,35 +43,36 @@ export type OrgItem = Note | Checklist | Workflow | Table;
 interface OrgsContextType {
   notes: OrgItem[];
   tables: Table[];
-  updateNotes: (notes: OrgItem[]) => void;
-  updateTables: (tables: Table[]) => void;
+  updateNotes: (newNotes: OrgItem[]) => void;
+  updateTables: (newTables: Table[]) => void;
 }
 
 const OrgsContext = createContext<OrgsContextType | undefined>(undefined);
 
-export function OrgsProvider({ children }: { children: ReactNode }) {
+export function OrgsProvider({ children }: { children: React.ReactNode }) {
   const [notes, setNotes] = useState<OrgItem[]>([]);
   const [tables, setTables] = useState<Table[]>([]);
 
   useEffect(() => {
-    const loadData = () => {
-      const savedNotes = JSON.parse(localStorage.getItem("notes") || "[]");
-      const savedTables = JSON.parse(localStorage.getItem("tables") || "[]");
-      setNotes(savedNotes);
-      setTables(savedTables);
-    };
-
-    loadData();
+    const savedNotes = localStorage.getItem('notes');
+    const savedTables = localStorage.getItem('tables');
+    
+    if (savedNotes) {
+      setNotes(JSON.parse(savedNotes));
+    }
+    if (savedTables) {
+      setTables(JSON.parse(savedTables));
+    }
   }, []);
 
   const updateNotes = (newNotes: OrgItem[]) => {
     setNotes(newNotes);
-    localStorage.setItem("notes", JSON.stringify(newNotes));
+    localStorage.setItem('notes', JSON.stringify(newNotes));
   };
 
   const updateTables = (newTables: Table[]) => {
     setTables(newTables);
-    localStorage.setItem("tables", JSON.stringify(newTables));
+    localStorage.setItem('tables', JSON.stringify(newTables));
   };
 
   return (
