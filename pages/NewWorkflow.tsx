@@ -2,13 +2,7 @@ import { useState } from 'react';
 import { Save, Plus, X, MoveRight, MoveLeft } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 import { useOrgs } from '@/contexts/OrgsContext';
-import { OrgItem } from '@/contexts/OrgsContext';
-
-interface Task {
-  id: string;
-  text: string;
-  status: 'todo' | 'doing' | 'done';
-}
+import { Task, OrgItem } from '@/contexts/OrgsContext';
 
 export default function NewWorkflow() {
   const [title, setTitle] = useState('');
@@ -65,7 +59,7 @@ export default function NewWorkflow() {
     const newWorkflow = {
       id: uuidv4(),
       title,
-      type: 'workflow',
+      type: 'workflow' as const,
       tasks,
       createdAt: new Date().toISOString(),
     };
@@ -150,39 +144,37 @@ export default function NewWorkflow() {
       <div className="flex flex-col gap-4 mb-4">
         <div className="flex self-start flex-col justify-between items-start gap-2 md:items-center">
           <h1 className="font-semibold text-2xl">Create a new workflow</h1>
-      </div>
-          <input
+        </div>
+        <input
           type="text"
           placeholder="Workflow Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           className="w-full bg-neutral-950 p-3 text-xl outline-none border rounded-md border-neutral-900 hover:border-neutral-600 transition"
         />
-          <div className="flex gap-2  border-b border-neutral-800 pb-4">
-            <input
-              type="text"
-              placeholder="New task"
-              value={newTaskText}
-              onChange={(e) => setNewTaskText(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleAddTask()}
-              className="flex-1 bg-neutral-950 p-2 text-lg outline-none border rounded-md border-neutral-900 hover:border-neutral-600 transition"
-            />
-            <button
-              onClick={handleAddTask}
-              className="bg-zinc-900 border border-neutral-800 p-2 rounded-md hover:border-neutral-500 hover:bg-zinc-800 transition"
-            >
-              <Plus />
-            </button>
-            <button
-              onClick={handleSave}
-              className="bg-zinc-900 border border-neutral-800 p-2 rounded-md hover:border-neutral-500 hover:bg-zinc-800 transition"
-            >
-              <Save />
-            </button>
-          </div>
+        <div className="flex gap-2 border-b border-neutral-800 pb-4">
+          <input
+            type="text"
+            placeholder="New task"
+            value={newTaskText}
+            onChange={(e) => setNewTaskText(e.target.value)}
+            onKeyPress={(e) => e.key === 'Enter' && handleAddTask()}
+            className="flex-1 bg-neutral-950 p-2 text-lg outline-none border rounded-md border-neutral-900 hover:border-neutral-600 transition"
+          />
+          <button
+            onClick={handleAddTask}
+            className="bg-zinc-900 border border-neutral-800 p-2 rounded-md hover:border-neutral-500 hover:bg-zinc-800 transition"
+          >
+            <Plus />
+          </button>
+          <button
+            onClick={handleSave}
+            className="bg-zinc-900 border border-neutral-800 p-2 rounded-md hover:border-neutral-500 hover:bg-zinc-800 transition"
+          >
+            <Save />
+          </button>
         </div>
-
-      
+      </div>
 
       {isMessage && <MessageContent message={message} color={color} />}
 
