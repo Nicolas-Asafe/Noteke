@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "postbuild": "copyfiles ./_redirects ./out/_redirects",
-    "start": "next start",
-    "lint": "next lint"
-  },
+      "dev": "next dev",
+      "build": "next build",
+      "postbuild": "copyfiles ./_redirects ./out/_redirects", 
+      "start": "next start",
+      "lint": "next lint"
+    },
   "dependencies": { 
     "@radix-ui/react-dialog": "^1.1.5",
     "@radix-ui/react-separator": "^1.1.1",
