@@ -45,18 +45,22 @@ function WorkflowEditor() {
   };
 
   const handleMoveTask = (id: string, direction: 'forward' | 'backward') => {
-    setTasks(tasks.map((task: Task) => {
+    setTasks(tasks.map((task) => {
       if (task.id !== id) return task;
 
-      const statusMap = {
+      const statusMap: Record<'todo' | 'doing' | 'done', {
+        forward: 'todo' | 'doing' | 'done',
+        backward: 'todo' | 'doing' | 'done'
+      }> = {
         todo: { forward: 'doing', backward: 'todo' },
         doing: { forward: 'done', backward: 'todo' },
         done: { forward: 'done', backward: 'doing' }
       };
 
+      const newStatus = statusMap[task.status][direction];
       return {
         ...task,
-        status: statusMap[task.status][direction]
+        status: newStatus as 'todo' | 'doing' | 'done'
       };
     }));
   };
