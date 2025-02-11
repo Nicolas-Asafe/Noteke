@@ -28,13 +28,13 @@ export default function NewWorkflow() {
   };
 
   const handleMoveTask = (id: string, direction: 'forward' | 'backward') => {
-    setTasks(tasks.map((task: Task) => {
+    setTasks(tasks.map(task => {
       if (task.id !== id) return task;
 
       const statusMap = {
-        todo: { forward: 'doing', backward: 'todo' },
-        doing: { forward: 'done', backward: 'todo' },
-        done: { forward: 'done', backward: 'doing' }
+        todo: { forward: 'doing' as const, backward: 'todo' as const },
+        doing: { forward: 'done' as const, backward: 'todo' as const },
+        done: { forward: 'done' as const, backward: 'doing' as const }
       };
 
       return {
