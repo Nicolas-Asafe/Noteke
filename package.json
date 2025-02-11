@@ -5,7 +5,7 @@
   "scripts": {
       "dev": "next dev",
       "build": "next build",
-      "postbuild": "copyfiles ./_redirects ./out/_redirects", 
+      "postbuild": "copyfiles ./_redirects ./out/_redirects",
       "start": "next start",
       "lint": "next lint"
     },
