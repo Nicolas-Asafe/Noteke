@@ -39,7 +39,7 @@ export default function SideBar() {
 
   // Função para determinar o tipo do item
   const getItemType = (item: OrgItem): string => {
-    if ('data' in item) return 'Table';
+    if ('data' in item) return 'Table'; 
     return item.type || 'Note';
   };
 
