@@ -144,7 +144,7 @@ export default function NewWorkflow() {
       <div className="flex flex-col gap-4 mb-4">
         <div className="flex self-start flex-col justify-between items-start gap-2 md:items-center">
           <h1 className="font-semibold text-2xl">Create a new workflow</h1>
-        </div>
+        </div>  
         <input
           type="text"
           placeholder="Workflow Title"
