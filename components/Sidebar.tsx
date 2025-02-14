@@ -136,7 +136,7 @@ export default function SideBar() {
     <div className="bg-neutral-950 text-white w-64 h-screen border-r border-zinc-900 md:flex md:flex-col hidden">
       <header className="p-4">
         <h1 className="text-3xl font-bold">Noteke</h1>
-      </header>
+      </header>  
 
       <section className="pt-8 p-3 flex flex-col border-t border-zinc-900">
         <div className="space-y-2 overflow-y-auto mb-4">
