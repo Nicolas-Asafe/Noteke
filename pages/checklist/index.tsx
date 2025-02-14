@@ -49,7 +49,7 @@ export default function ChecklistPlugin() {
   const getCompletionPercentage = (items: ChecklistItem[]) => {
     if (items.length === 0) return 0;
     const completedItems = items.filter(item => item.completed).length;
-    return Math.round((completedItems / items.length) * 100);
+    return Math.round((completedItems / items.length) * 100);       
   };
 
   return (
