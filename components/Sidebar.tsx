@@ -148,10 +148,10 @@ export default function SideBar() {
             Plugins
             <Plug size={30} className="p-1 rounded-md hover:bg-neutral-900 hover:text-white transition" />
           </Link>
-          <Link href={'/plugins'} className="flex justify-between items-center p-1 px-2 bg-zinc-900 hover:bg-zinc-800 rounded-lg border border-neutral-800 hover:border-neutral-500 text-zinc-400">
+          {/* <Link href={'/plugins'} className="flex justify-between items-center p-1 px-2 bg-zinc-900 hover:bg-zinc-800 rounded-lg border border-neutral-800 hover:border-neutral-500 text-zinc-400">
             Settings
             <Settings size={30} className="p-1 rounded-md hover:bg-neutral-900 hover:text-white transition" />
-          </Link>
+          </Link> */}
         </div>
 
         <div className="border border-neutral-900 rounded-lg space-y-2">
