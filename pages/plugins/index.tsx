@@ -11,7 +11,7 @@ interface Plugin {
   installed: boolean;
 }
 
-function getPluginIcon(iconType: string, className: string = "")    {
+function getPluginIcon(iconType: string, className: string = "") {
   switch (iconType) {
     case 'book':
       return <Book className={`${className} text-blue-500`} />;
@@ -76,11 +76,13 @@ export default function PluginsPage() {
   const [isMessage, setIsMessage] = useState<boolean>(false);
   const [color, setColor] = useState<string>("");
 
+  // Carregar plugins do localStorage
   useEffect(() => {
     try {
       const savedPlugins = localStorage.getItem('plugins');
       if (savedPlugins) {
         const parsedPlugins = JSON.parse(savedPlugins);
+        // Garantir que todos os plugins padrão existam
         const updatedPlugins = defaultPlugins.map(defaultPlugin => {
           const savedPlugin = parsedPlugins.find((p: Plugin) => p.id === defaultPlugin.id);
           return savedPlugin || defaultPlugin;
@@ -88,7 +90,7 @@ export default function PluginsPage() {
         setPlugins(updatedPlugins);
       }
     } catch (error) {
-      console.error('Error loading plugins:', error);
+      console.error('Erro ao carregar plugins:', error);
       setPlugins(defaultPlugins);
     }
   }, []);
@@ -101,6 +103,7 @@ export default function PluginsPage() {
       return plugin;
     });
     
+    // Criar versão segura para localStorage (sem referências circulares)
     const storagePlugins = updatedPlugins.map(({ id, name, description, iconType, installed }) => ({
       id,
       name,
@@ -127,7 +130,7 @@ export default function PluginsPage() {
     }
   };
 
-  return (
+    return (
     <div className="w-full h-screen flex flex-col p-5 overflow-hidden">
       <h1 className="text-4xl font-bold mb-8">Plugins</h1>
       
@@ -181,6 +184,7 @@ export default function PluginsPage() {
           </div>
         </div>
       </div>
-    </div>
-  );
-} 
+      </div>
+    );
+  }
+  
