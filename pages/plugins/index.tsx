@@ -11,7 +11,7 @@ interface Plugin {
   installed: boolean;
 }
 
-function getPluginIcon(iconType: string, className: string = "") {
+function getPluginIcon(iconType: string, className: string = "")    {
   switch (iconType) {
     case 'book':
       return <Book className={`${className} text-blue-500`} />;
