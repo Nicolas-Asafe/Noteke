@@ -3,23 +3,30 @@ import { X } from 'lucide-react';
 interface MessageContentProps {
   message: string;
   color: string;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
-export function MessageContent({ message, color, onClose }: MessageContentProps) {
+export default function MessageContent({ message, color, onClose }: MessageContentProps) {
   const colorClasses = {
-    red: "text-red-500",
-    green: "text-green-500",
-    amber: "text-amber-400",
+    red: "bg-red-500",
+    green: "bg-green-500",
+    amber: "bg-amber-500",
   };
 
   return (
-    <div className="fixed inset-0 pointer-events-none flex items-center justify-center z-50">
-      <div className="md:ml-32 pointer-events-auto">
-        <p className={`animaMini ${colorClasses[color as keyof typeof colorClasses]} border border-neutral-900 bg-black p-2 rounded-md font-semibold cursor-pointer transition flex flex-row gap-4 items-center`}>
-          {message}
-          <X onClick={onClose} className="border border-neutral-900 rounded-md cursor-pointer" />
-        </p>
+    <div className="fixed inset-x-4 top-4 md:inset-auto md:top-4 md:right-4 md:left-auto z-50 pointer-events-auto">
+      <div className={`${colorClasses[color as keyof typeof colorClasses]} rounded-lg shadow-lg`}>
+        <div className="flex items-center justify-between p-4">
+          <p className="text-white font-medium">{message}</p>
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="ml-4 text-white hover:text-neutral-200 transition"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

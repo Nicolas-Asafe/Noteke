@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { v4 as uuidv4 } from 'uuid';
 
-interface BookType {
+interface Book {
   id: string;
   title: string;
   chapters: Chapter[];
@@ -20,7 +20,7 @@ interface Chapter {
 }
 
 export default function BookPlugin() {
-  const [books, setBooks] = useState<BookType[]>([]);
+  const [books, setBooks] = useState<Book[]>([]);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [newBookTitle, setNewBookTitle] = useState('');
 
@@ -35,7 +35,7 @@ export default function BookPlugin() {
     if (!newBookTitle.trim()) return;
 
     const now = new Date().toISOString();
-    const newBook: BookType = {
+    const newBook: Book = {
       id: uuidv4(),
       title: newBookTitle,
       chapters: [],
