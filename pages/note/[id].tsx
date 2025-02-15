@@ -77,14 +77,20 @@ export default function NoteEditor() {
   return (
     <div className="flex flex-col h-[calc(100vh-80px)] md:h-screen p-5 animaMini">
       <div className="flex flex-col gap-4">
-        <div className="flex self-start flex-col justify-between items-start gap-2 md:items-center">
+        <div className="flex self-start w-full justify-between items-start gap-2 md:items-center">
           <h1 className="font-semibold text-2xl">Edit note</h1>
+          <button
+            onClick={handleSave}
+            className="bg-zinc-900 border border-neutral-800 p-2 rounded-md hover:border-neutral-500 hover:bg-zinc-800 transition"
+          >
+            <Save />
+          </button>
         </div>
         <input
           type="text"
           placeholder="Note Title"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => setTitle(e.target.value)} 
           className="w-full bg-neutral-950 p-3 text-xl outline-none border rounded-md border-neutral-900 hover:border-neutral-600 transition"
         />
         <div className="flex gap-2 border-b border-neutral-800 pb-4">
@@ -94,12 +100,7 @@ export default function NoteEditor() {
             onChange={(e) => setDescription(e.target.value)}
             className="flex-1 bg-neutral-950 p-2 text-lg outline-none border rounded-md border-neutral-900 hover:border-neutral-600 transition min-h-[200px]"
           />
-          <button
-            onClick={handleSave}
-            className="bg-zinc-900 border border-neutral-800 p-2 rounded-md hover:border-neutral-500 hover:bg-zinc-800 transition"
-          >
-            <Save />
-          </button>
+          
         </div>
       </div>
 

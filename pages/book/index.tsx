@@ -62,7 +62,7 @@ export default function BookPlugin() {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col p-4 md:p-5">
+    <div className="w-full min-h-screen flex flex-col p-4 md:p-5 animaMini">
       <div className="flex justify-between items-center mb-6 md:mb-8">
         <div className="flex items-center gap-3">
           <Book className="w-8 h-8 text-blue-500" />
@@ -113,8 +113,8 @@ export default function BookPlugin() {
       )}
 
       <div className="flex-1 overflow-hidden">
-        <div className="h-full overflow-y-auto -mx-4 md:mx-0 px-4 md:px-0">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="h-[80dvh] overflow-y-auto -mx-4 md:mx-0 px-4 md:px-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-16">
             {books.map(book => (
               <Link
                 href={`/book/${book.id}`}

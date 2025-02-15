@@ -155,7 +155,7 @@ export default function WorkflowEditor() {
   if (!workflow) return <div>Carregando...</div>;
 
   return (
-    <div className="w-full min-h-screen flex flex-col p-4 md:p-5">
+    <div className="w-full min-h-screen flex flex-col p-4 md:p-5 animaMini">
       <div className="flex justify-between items-center mb-4 md:mb-6">
         <div className="flex items-center gap-3">
           <div className="p-2 md:p-3 bg-green-500/10 rounded-lg border border-green-500/20">
@@ -214,8 +214,8 @@ export default function WorkflowEditor() {
         </div>
       )}
 
-      <div className="flex-1 overflow-y-auto -mx-4 md:mx-0 px-4 md:px-0">
-        <div className="space-y-3 md:space-y-4">
+      <div className="flex-1 h-[80dvh] overflow-y-auto -mx-4 md:mx-0 px-4 md:px-0">
+        <div className="space-y-3 md:space-y-4 mb-16">
           {workflow?.steps.map((step, index) => (
             <div
               key={step.id}

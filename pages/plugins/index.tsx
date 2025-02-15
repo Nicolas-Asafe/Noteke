@@ -131,7 +131,7 @@ export default function PluginsPage() {
   };
 
     return (
-    <div className="w-full h-screen flex flex-col p-5 overflow-hidden">
+    <div className="w-full h-screen flex flex-col p-5 overflow-hidden animaMini">
       <h1 className="text-4xl font-bold mb-8">Plugins</h1>
       
       {isMessage && (
@@ -143,8 +143,8 @@ export default function PluginsPage() {
       )}
 
       <div className="flex-1 overflow-hidden">
-        <div className="h-full overflow-y-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="h-[80dvh] overflow-y-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {plugins.map(plugin => (
               <div 
                 key={plugin.id}

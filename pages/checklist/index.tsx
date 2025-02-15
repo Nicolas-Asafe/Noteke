@@ -53,7 +53,7 @@ export default function ChecklistPlugin() {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col p-5 overflow-hidden">
+    <div className="w-full h-screen flex flex-col p-5 overflow-hidden animaMini">
       <div className="flex justify-between items-center mb-8">
         <div className="flex items-center gap-3">
           <CheckSquare className="w-8 h-8 text-purple-500" />
@@ -98,8 +98,8 @@ export default function ChecklistPlugin() {
       )}
 
       <div className="flex-1 overflow-hidden">
-        <div className="h-full overflow-y-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="h-[80dvh] overflow-y-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {checklists.map(checklist => (
               <Link
                 href={`/checklist/${checklist.id}`}

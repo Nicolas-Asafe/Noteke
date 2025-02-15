@@ -30,7 +30,7 @@ export default function SharePage() {
   }
 
   return (
-    <div className="animaMini md:anima flex flex-col h-screen p-5 md:justify-center ">
+    <div className="animaMini md:anima flex flex-col h-screen p-5 md:justify-center">
       <h1 className="font-semibold text-2xl mb-3 self-start">Nota Compartilhada</h1>
       
       <div className="w-full bg-neutral-950 p-3 text-3xl border rounded-md border-neutral-900">

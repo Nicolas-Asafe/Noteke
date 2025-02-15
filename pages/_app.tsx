@@ -41,12 +41,12 @@ export default function App({ Component, pageProps }: AppProps) {
         <div className="fixed bottom-0 left-0 right-0 md:hidden">
           <div className="mx-4 mb-4">
             <div className="bg-neutral-950 border border-zinc-900 rounded-lg p-1 flex justify-around items-center">
-              <button 
+              {/* <button 
                 onClick={() => handleNavigation('/settings')}
                 className="p-2 text-zinc-400 hover:text-white hover:bg-neutral-900 rounded-md transition"
               >
                 <Settings size={24} />
-              </button>
+              </button> */}
               <button 
                 onClick={() => handleNavigation('/')}
                 className="p-2 text-zinc-400 hover:text-white hover:bg-neutral-900 rounded-md transition"

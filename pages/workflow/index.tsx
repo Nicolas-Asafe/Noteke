@@ -48,8 +48,8 @@ export default function WorkflowPlugin() {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col p-5 overflow-hidden">
-      <div className="flex justify-between items-center mb-8">
+    <div className="w-full h-screen flex flex-col p-5 overflow-hidden animaMini">
+      <div className="flex justify-between items-center mb-16">
         <div className="flex items-center gap-3">
           <GitBranch className="w-8 h-8 text-green-500" />
           <h1 className="text-3xl font-bold">Seus Workflows</h1>
@@ -92,8 +92,8 @@ export default function WorkflowPlugin() {
         </div>
       )}
 
-      <div className="flex-1 overflow-hidden">
-        <div className="h-full overflow-y-auto">
+      <div className="flex-1 h-[80dvh] overflow-y-auto">
+        <div className="h-full mb-16 overflow-y-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {workflows.map(workflow => (
               <Link

@@ -410,7 +410,7 @@ export default function Home() {
         />
       )}
       
-      <div className="flex justify-between items-center w-full mb-4">
+      <div className="flex justify-between items-center w-full mb-4 animaMini">
         <h1 className="font-semibold text-2xl md:text-3xl self-start">Your Orgs</h1>
         <button
           onClick={() => setIsSidebarOpen(true)}
@@ -479,9 +479,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-hidden pb-16 md:pb-0">
-        <div className="h-full overflow-y-auto px-0 md:px-4">
-          <div className="w-full md:max-w-2xl mx-auto space-y-4">
+      <div className="flex-1 overflow-hidden pb-16 md:pb-0 anima">
+        <div className="h-[80dvh] overflow-y-auto px-0 md:px-4">
+          <div className="w-full md:max-w-2xl mx-auto space-y-4 mb-16">
             {allItems.map(item => (
               <div key={item.id} className='transition-all'>
                 {renderItem(item)}
