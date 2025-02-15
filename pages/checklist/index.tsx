@@ -57,7 +57,7 @@ export default function ChecklistPlugin() {
       <div className="flex justify-between items-center mb-8">
         <div className="flex items-center gap-3">
           <CheckSquare className="w-8 h-8 text-purple-500" />
-          <h1 className="text-3xl font-bold">Seus Checklists</h1>
+          <h1 className="text-3xl font-bold">Your Checklists</h1>
         </div>
         <button
           onClick={() => setIsCreateModalOpen(true)}
@@ -72,7 +72,7 @@ export default function ChecklistPlugin() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-neutral-950 p-6 rounded-lg w-96 border border-neutral-800">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">Criar Novo Checklist</h2>
+              <h2 className="text-xl font-bold">Create New Checklist</h2>
               <button
                 onClick={() => setIsCreateModalOpen(false)}
                 className="p-2 hover:bg-neutral-900 rounded-md transition"
@@ -89,9 +89,9 @@ export default function ChecklistPlugin() {
             />
             <button
               onClick={handleCreateChecklist}
-              className="w-full bg-purple-600 text-white p-3 rounded-md hover:bg-purple-700 transition"
+              className="w-full bg-neutral-900 p-4 rounded-lg border border-neutral-800 transition"
             >
-              Criar Checklist
+              Create Checklist
             </button>
           </div>
         </div>

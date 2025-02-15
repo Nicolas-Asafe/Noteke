@@ -152,12 +152,20 @@ export default function BookEditor() {
           </div>
           <h1 className="text-xl md:text-3xl font-bold truncate">{book?.title}</h1>
         </div>
+        <div className="flex gap-2">
         <button
           onClick={() => setIsCreateModalOpen(true)}
           className="bg-zinc-900 border border-neutral-800 p-2 rounded-md hover:border-neutral-500 hover:bg-zinc-800 transition flex items-center gap-2"
         >
           <Plus size={24} />
         </button>
+        <button
+                onClick={handleSaveChapter}
+                className="bg-zinc-900 border border-neutral-800 p-2 rounded-md hover:border-neutral-500 hover:bg-zinc-800 transition flex items-center gap-2"
+              >
+                <Save size={24} />
+              </button>
+        </div>
       </div>
 
       {isMessage && <MessageContent message={message} color={color} />}
@@ -179,6 +187,7 @@ export default function BookEditor() {
               >
                 <X className="w-6 h-6" />
               </button>
+              
             </div>
             <input
               type="text"
@@ -189,7 +198,7 @@ export default function BookEditor() {
             />
             <button
               onClick={handleCreateChapter}
-              className="w-full bg-blue-600 text-white p-3 rounded-md hover:bg-blue-700 transition"
+              className="w-full bg-neutral-900 p-4 rounded-lg border border-neutral-800 transition"
             >
               Create Chapter
             </button>
@@ -197,7 +206,7 @@ export default function BookEditor() {
         </div>
       )}
 
-      <div className="flex-1 flex flex-col md:flex-row gap-4 overflow-hidden">
+      <div className="flex flex-col md:flex-row gap-4 overflow-hidden h-[80dvh]">
         {/* Lista de capítulos */}
         <div className="w-full md:w-64 h-48 md:h-auto overflow-y-auto border border-neutral-800 rounded-lg p-4">
           <h2 className="text-lg font-semibold mb-4">Chapters</h2>
@@ -240,13 +249,7 @@ export default function BookEditor() {
                 })}
                 className="text-lg md:text-xl font-semibold bg-transparent border-b border-neutral-800 focus:border-blue-500 outline-none px-2 py-1 w-full md:w-auto"
               />
-              <button
-                onClick={handleSaveChapter}
-                className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition flex items-center gap-2 w-full md:w-auto justify-center"
-              >
-                <Save className="w-4 h-4" />
-                Save
-              </button>
+              
             </div>
             <textarea
               value={selectedChapter.content}
@@ -254,7 +257,7 @@ export default function BookEditor() {
                 ...selectedChapter,
                 content: e.target.value
               })}
-              className="flex-1 bg-neutral-900 p-4 rounded-lg border border-neutral-800 resize-none outline-none focus:border-blue-500 text-sm md:text-base"
+              className="h-full  bg-neutral-900 p-4 rounded-lg border border-neutral-800 resize-none outline-none focus:border-blue-500 text-sm md:text-base"
               placeholder="Chapter content..."
             />
           </div>

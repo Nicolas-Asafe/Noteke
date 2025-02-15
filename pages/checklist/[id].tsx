@@ -195,7 +195,7 @@ export default function ChecklistEditor() {
             />
             <button
               onClick={handleCreateItem}
-              className="w-full bg-purple-600 text-white p-3 rounded-md hover:bg-purple-700 transition"
+              className="w-full bg-neutral-900 p-4 rounded-lg border border-neutral-800 transition"
             >
               Add Item
             </button>

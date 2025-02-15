@@ -206,7 +206,7 @@ export default function WorkflowEditor() {
             />
             <button
               onClick={handleCreateStep}
-              className="w-full bg-green-600 text-white p-3 rounded-md hover:bg-green-700 transition"
+              className="w-full bg-neutral-900 p-4 rounded-lg border border-neutral-800 transition"
             >
               Create Step
             </button>

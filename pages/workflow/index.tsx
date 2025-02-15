@@ -67,7 +67,7 @@ export default function WorkflowPlugin() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-neutral-950 p-6 rounded-lg w-96 border border-neutral-800">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">Criar Novo Workflow</h2>
+              <h2 className="text-xl font-bold">Create New Workflow</h2>
               <button
                 onClick={() => setIsCreateModalOpen(false)}
                 className="p-2 hover:bg-neutral-900 rounded-md transition"
@@ -84,9 +84,9 @@ export default function WorkflowPlugin() {
             />
             <button
               onClick={handleCreateWorkflow}
-              className="w-full bg-green-600 text-white p-3 rounded-md hover:bg-green-700 transition"
+              className="w-full bg-neutral-900 p-4 rounded-lg border border-neutral-800 transition"
             >
-              Criar Workflow
+              Create Workflow
             </button>
           </div>
         </div>
