@@ -7,7 +7,8 @@
     "build": "next build",
     "postbuild": "copyfiles './out/_redirects' './.netlify/deploy'",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next export"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.5",
