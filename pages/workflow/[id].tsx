@@ -214,7 +214,7 @@ export default function WorkflowEditor() {
         </div>
       )}
 
-      <div className="flex-1 h-[80dvh] overflow-y-auto -mx-4 md:mx-0 px-4 md:px-0">
+      <div className="h-[80dvh] overflow-y-auto -mx-4 md:mx-0 px-4 md:px-0">
         <div className="space-y-3 md:space-y-4 mb-16">
           {workflow?.steps.map((step, index) => (
             <div
