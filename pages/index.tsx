@@ -244,7 +244,7 @@ export default function Home() {
     switch (item.type) {
       case 'note':
         return (
-              <div key={item.id} className="md:flex-col md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-neutral-800 rounded-lg shadow-md text-left">
+              <div key={item.id} className="md:flex-col md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-zinc-900 rounded-lg shadow-md text-left">
                 <div className="flex flex-col w-10/12 md:w-full">
                  <h2 style={{ maxWidth: "calc(100% - 0px)", }} className="truncate text-2xl font-bold mb-2">{item.title || "Untitled"}</h2>
               <p style={{ maxWidth: "calc(100% - 0px)", }} className="h-28 md:h-auto pl-2 overflow-y-scroll p-1 border border-neutral-800 rounded-md text-lg text-zinc-400">{item.description || "No description available."}</p>
@@ -273,7 +273,7 @@ export default function Home() {
         );
       case 'table':
         return (
-              <div key={item.id} className="md:flex-col md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-neutral-800 rounded-lg shadow-md text-left">
+              <div key={item.id} className="md:flex-col md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-neutral-900 rounded-lg shadow-md text-left">
                 <div className="flex flex-col w-10/12 md:w-full">
                   <div className="flex items-center gap-2">
                     <h2 className="truncate text-2xl font-bold">{item.title || "Untitled"}</h2>
@@ -305,7 +305,7 @@ export default function Home() {
         );
       case 'book':
         return (
-          <div key={item.id} className="md:flex-col md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-neutral-800 rounded-lg shadow-md text-left">
+          <div key={item.id} className="md:flex-col md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-neutral-900 rounded-lg shadow-md text-left">
             <div className="flex flex-col w-10/12 md:w-full">
               <div className="flex items-center gap-2">
                 <Book className="w-6 h-6 text-blue-500" />
@@ -333,7 +333,7 @@ export default function Home() {
         );
       case 'workflow':
         return (
-          <div key={item.id} className="md:flex-col md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-neutral-800 rounded-lg shadow-md text-left">
+          <div key={item.id} className="md:flex-col md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-neutral-900 rounded-lg shadow-md text-left">
             <div className="flex flex-col w-10/12 md:w-full">
               <div className="flex items-center gap-2">
                 <GitBranch className="w-6 h-6 text-green-500" />
@@ -361,7 +361,7 @@ export default function Home() {
         );
       case 'checklist':
         return (
-          <div key={item.id} className="md:flex-col md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-neutral-800 rounded-lg shadow-md text-left">
+          <div key={item.id} className="md:flex-col md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-neutral-900 rounded-lg shadow-md text-left">
             <div className="flex flex-col w-10/12 md:w-full">
               <div className="flex items-center gap-2">
                 <CheckSquare className="w-6 h-6 text-purple-500" />
@@ -444,37 +444,43 @@ export default function Home() {
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            <div className="flex-1 overflow-y-auto p-4 space-y-3">
               <Link 
                 href="/NewTable"
-                className="w-full flex items-center gap-3 p-4 bg-zinc-900 rounded-lg border border-neutral-800 hover:border-neutral-700 transition-all"
+                className="w-full flex items-center gap-3 p-3 justify-between bg-zinc-900 rounded-lg border border-neutral-800 hover:border-neutral-700 transition-all"
                 onClick={() => setIsSidebarOpen(false)}
               >
+                <span className="font-semibold">New Table</span>
                 <Grid2X2Plus className="w-6 h-6" />
-                <span className="font-medium">New Table</span>
               </Link>
 
               <Link 
                 href="/NewNote"
-                className="w-full flex items-center gap-3 p-4 bg-zinc-900 rounded-lg border border-neutral-800 hover:border-neutral-700 transition-all"
+                className="w-full flex items-center gap-3 p-3 justify-between bg-zinc-900 rounded-lg border border-neutral-800 hover:border-neutral-700 transition-all"
                 onClick={() => setIsSidebarOpen(false)}
               >
+                <span className="font-semibold">New Note</span>
                 <FilePlus className="w-6 h-6" />
-                <span className="font-medium">New Note</span>
               </Link>
 
               {plugins.filter(plugin => plugin.installed).map(plugin => (
                 <Link
                   key={plugin.id}
                   href={`/${plugin.id}`}
-                  className="w-full flex items-center gap-3 p-4 bg-zinc-900 rounded-lg border border-neutral-800 hover:border-neutral-700 transition-all"
+                  className="w-full flex items-center justify-between gap-3 p-3 bg-zinc-900 rounded-lg border border-neutral-800 hover:border-neutral-700 transition-all"
                   onClick={() => setIsSidebarOpen(false)}
                 >
+                  <span className="font-semibold">New {plugin.name}</span>
                   {getPluginIcon(plugin.iconType, "w-6 h-6")}
-                  <span className="font-medium">New {plugin.name}</span>
                 </Link>
               ))}
             </div>
+                  <div className="flex flex-col w-full bg-white">
+                 <Link href="mailto:nicolasasafe45@gmail.com" className="text-zinc-900 text-xs m-2 hover:text-zinc-600">Clique aqui para enviar seu feedback e sugestão, sua opnião faz a diferença!</Link>
+                  </div>
+                  <p className="text-zinc-400 text-sm m-2">
+                   Made by <Link href="https://github.com/Nicolas-Asafe" className="text-blue-100 hover:text-white">Nicolas Asafe</Link>
+                 </p>
           </div>
         </div>
       </div>

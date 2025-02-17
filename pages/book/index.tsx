@@ -79,7 +79,7 @@ export default function BookPlugin() {
       {/* Modal de criação */}
       {isCreateModalOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 transition-all bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
           onClick={() => setIsCreateModalOpen(false)}
         >
           <div 
@@ -104,7 +104,7 @@ export default function BookPlugin() {
             />
             <button
               onClick={handleCreateBook}
-              className="w-full bg-blue-600 text-white p-3 rounded-md hover:bg-blue-700 transition"
+              className="w-full bg-neutral-900 p-4 rounded-lg border border-neutral-800 transition"
             >
               Create Book
             </button>

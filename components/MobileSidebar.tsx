@@ -50,7 +50,9 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
       />
       
       {/* Sidebar */}
-      <div className="relative w-64 h-full bg-neutral-950 border-r border-zinc-900">
+      <div className={`relative w-64 h-full bg-neutral-950 border-r border-zinc-900 transform transition-transform duration-500 ease-in-out ${
+        isOpen ? 'translate-x-0' : '-translate-x-full'
+      }`}>
         <div className="p-4 flex justify-between items-center border-b border-zinc-900">
           <h1 className="text-2xl font-bold">Create New</h1>
           <button onClick={onClose} className="p-2">
@@ -71,10 +73,11 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
           ))}
         </div>
 
-        <p className="text-zinc-400 text-sm absolute bottom-2 left-2">
+        <p className="text-zinc-400 text-sm bottom-2 left-2">
           Made by <Link href="https://github.com/Nicolas-Asafe" className="text-zinc-400 hover:text-white">Nicolas Asafe</Link>
         </p>
+        
       </div>
     </div>
   );
-} 
+}
