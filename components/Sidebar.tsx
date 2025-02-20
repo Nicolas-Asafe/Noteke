@@ -133,18 +133,18 @@ export default function SideBar() {
   });
 
   return (
-    <div className="bg-neutral-950 text-white w-64 h-screen border-r border-zinc-900 md:flex md:flex-col hidden">
+    <div className="bg-neutral-950  text-white w-64 h-screen border-r border-zinc-900 md:flex md:flex-col hidden">
       <header className="p-4">
         <h1 className="text-3xl font-bold">Noteke</h1>
       </header>  
 
       <section className="pt-8 p-3 flex flex-col border-t border-zinc-900">
         <div className="space-y-2 overflow-y-auto mb-4">
-          <Link href={'/'} className="flex justify-between items-center p-1 px-2 bg-zinc-900 hover:bg-zinc-800 rounded-lg border border-neutral-800 hover:border-neutral-500 text-zinc-400">
+          <Link href={'/'} className="flex justify-between items-center p-1 px-2 bg-zinc-900 hover:bg-zinc-800 rounded-lg transition border border-neutral-800 hover:border-neutral-500 text-zinc-400">
             Go Home
             <Home size={30} className="p-1 rounded-md hover:bg-neutral-900 hover:text-white transition" />
           </Link>
-          <Link href={'/plugins'} className="flex justify-between items-center p-1 px-2 bg-zinc-900 hover:bg-zinc-800 rounded-lg border border-neutral-800 hover:border-neutral-500 text-zinc-400">
+          <Link href={'/plugins'} className="flex justify-between items-center p-1 px-2 bg-zinc-900 hover:bg-zinc-800 transition rounded-lg border border-neutral-800 hover:border-neutral-500 text-zinc-400">
             Plugins
             <Plug size={30} className="p-1 rounded-md hover:bg-neutral-900 hover:text-white transition" />
           </Link>
@@ -155,16 +155,16 @@ export default function SideBar() {
         </div>
 
         <div className="border border-neutral-900 rounded-lg space-y-2">
-          <p className="text-slate-200 font-semibold border-b p-2 border-neutral-900">Your Orgs:</p>
-          <ul className="space-y-2 p-2 pt-0 h-40 overflow-scroll">
+          <p className="text-slate-200 font-semibold border-b p-3 border-neutral-900">Your Orgs:</p>
+          <ul className="space-y-2 p-3 pt-1 h-64 overflow-scroll">
             {allItems.map(item => (
               <li
                 onClick={() => handleItemClick(item.id, item.type as any)}
                 key={item.id}
                 className="flex flex-row justify-between items-center transition shadow-md shadow-blackbg-neutral-950 hover:bg-zinc-800 rounded-lg hover:border-neutral-600 cursor-pointer border border-neutral-800"
               >
-                <span className="font-normal text-zinc-400 p-2 truncate flex items-center gap-2" style={{ maxWidth: "calc(100% - 70px)" }}>
-                  {getItemIcon(item.type)}
+                <span className="font-normal text-zinc-400 p-2 truncate flex items-center" style={{ maxWidth: "calc(100% - 50px)" }}>
+                  
                   {item.title || "Untitled"}
                   <span className="text-xs ml-2 text-neutral-500">
                     ({item.type.charAt(0).toUpperCase() + item.type.slice(1)})

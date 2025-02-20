@@ -476,9 +476,9 @@ export default function Home() {
               ))}
             </div>
                   <div className="flex flex-col w-full bg-white">
-                 <Link href="mailto:nicolasasafe45@gmail.com" className="text-zinc-900 text-xs m-2 hover:text-zinc-600">Clique aqui para enviar seu feedback e sugestão, sua opnião faz a diferença!</Link>
+                 <Link href="mailto:nicolasasafe45@gmail.com" className="text-zinc-900 text-xs  m-1 hover:text-zinc-600">Clique aqui para enviar seu feedback e sugestão, sua opnião faz a diferença!</Link>
                   </div>
-                  <p className="text-zinc-400 text-sm m-2">
+                  <p className="text-zinc-400 text-sm p-1">
                    Made by <Link href="https://github.com/Nicolas-Asafe" className="text-blue-100 hover:text-white">Nicolas Asafe</Link>
                  </p>
           </div>

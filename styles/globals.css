@@ -19,6 +19,7 @@
 body {
   /* color: var(--foreground);
   background: var(--background); */
+  background-color: #0b0b0b;
   background-color: #0e0e0e;
   color: #ededed;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -79,7 +80,7 @@ body {
     --primary-foreground: 240 5.9% 10%;
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
+    --muted: 240 3.7% 15.9%; 
     --muted-foreground: 240 5% 64.9%;
     --accent: 240 3.7% 15.9%;
     --accent-foreground: 0 0% 98%;
@@ -136,7 +137,7 @@ body {
 @keyframes AppearMini {
   from {
     opacity: 0;
-    transform: translatey(-5%);
+    transform: translatey(-5%); 
   }
   to {
     transform: translatey(0%);
