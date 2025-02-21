@@ -4,10 +4,9 @@ Notes é um aplicativo de notas autênticas desenvolvido com o objetivo de forne
 
 ## Tecnologias Utilizadas
 
-- **Frontend**: Next.js
+- **Frontend**: Next.js e LocalStorage
 - **Estilização**: Tailwind CSS
 - **Gerenciamento de Estado**: React Context API
-- **Banco de Dados**: [Especifique o banco de dados utilizado, se houver]
 
 ## Como o Site Funciona
 
