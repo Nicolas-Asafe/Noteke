@@ -32,9 +32,9 @@ export default function Docs() {
 
        
 
-        </div>
+        </div> 
 
-           <div>
+           <div> 
            <p className="text-lg font-medium text-zinc-100 mt-3">
        Você coloca o titulo e a suas anotações na nota e clica em <button 
        className="bg-zinc-900 border border-neutral-800 p-2 rounded-md hover:border-neutral-500 hover:bg-zinc-800 transition"
