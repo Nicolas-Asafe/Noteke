@@ -5,8 +5,8 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <script defer src="https://cloud.umami.is/script.js" data-website-id="586f74d7-3095-45b0-aead-db1c67cd5981"></script>
-        
-        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="shortcut icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
