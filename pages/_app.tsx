@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import "../styles/docs.css";
 import type { AppProps } from "next/app";
 import SideBar from "@/components/Sidebar";
 import Link from "next/link";
@@ -32,7 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <SideBar />
 
           {/* Conteúdo principal */}
-          <main className="flex-1 relative">
+          <main className="flex-1 relative overflow-y-auto">
             <Component {...pageProps} key={router.asPath} />
           </main>
         </div>

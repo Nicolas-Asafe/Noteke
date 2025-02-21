@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Trash2, Plus, Home, Plug, Table, Settings, Book, GitBranch, CheckSquare } from "lucide-react";
+import { Trash2, Plus, Home, Plug, Table, Settings, Book, GitBranch, CheckSquare, Paperclip, BookCopy } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
@@ -142,11 +142,15 @@ export default function SideBar() {
         <div className="space-y-2 overflow-y-auto mb-4">
           <Link href={'/'} className="flex justify-between items-center p-1 px-2 bg-zinc-900 hover:bg-zinc-800 rounded-lg transition border border-neutral-800 hover:border-neutral-500 text-zinc-400">
             Go Home
-            <Home size={30} className="p-1 rounded-md hover:bg-neutral-900 hover:text-white transition" />
+            <Home size={30} className="p-1 rounded-md  transition" />
           </Link>
           <Link href={'/plugins'} className="flex justify-between items-center p-1 px-2 bg-zinc-900 hover:bg-zinc-800 transition rounded-lg border border-neutral-800 hover:border-neutral-500 text-zinc-400">
             Plugins
-            <Plug size={30} className="p-1 rounded-md hover:bg-neutral-900 hover:text-white transition" />
+            <Plug size={30} className="p-1 rounded-md transition" />
+          </Link>
+          <Link href={'/docs'} className="flex justify-between items-center p-1 px-2 bg-zinc-900 hover:bg-zinc-800 transition rounded-lg border border-neutral-800 hover:border-neutral-500 text-zinc-400">
+            Documents
+            <BookCopy size={30} className="p-1 rounded-md  transition" />
           </Link>
           {/* <Link href={'/plugins'} className="flex justify-between items-center p-1 px-2 bg-zinc-900 hover:bg-zinc-800 rounded-lg border border-neutral-800 hover:border-neutral-500 text-zinc-400">
             Settings
