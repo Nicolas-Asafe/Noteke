@@ -155,7 +155,7 @@ export default function WorkflowEditor() {
   if (!workflow) return <div>Carregando...</div>;
 
   return (
-    <div className="w-full min-h-screen flex flex-col p-4 md:p-5 animaMini">
+    <div className="w-full min-h-screen flex flex-col p-4 md:p-5 animao">
       <div className="flex justify-between items-center mb-4 md:mb-6">
         <div className="flex items-center gap-3">
           <div className="p-2 md:p-3 bg-green-500/10 rounded-lg border border-green-500/20">

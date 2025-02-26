@@ -62,7 +62,7 @@ export default function BookPlugin() {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col p-4 md:p-5 animaMini">
+    <div className="w-full min-h-screen flex flex-col p-4 md:p-5 animao">
       <div className="flex justify-between items-center mb-6 md:mb-8">
         <div className="flex items-center gap-3">
           <Book className="w-8 h-8 text-blue-500" />
@@ -79,7 +79,7 @@ export default function BookPlugin() {
       {/* Modal de criação */}
       {isCreateModalOpen && (
         <div 
-          className="fixed inset-0 transition-all bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 transition-all bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 "
           onClick={() => setIsCreateModalOpen(false)}
         >
           <div 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Book, GitBranch, CheckSquare, Download, Check, X } from 'lucide-react';
+import { Book, GitBranch, CheckSquare, Download, Check, X,Group } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
@@ -7,7 +7,7 @@ interface Plugin {
   id: string;
   name: string;
   description: string;
-  iconType: 'book' | 'workflow' | 'checklist';
+  iconType: 'book' | 'workflow' | 'checklist' | 'Group';
   installed: boolean;
 }
 
@@ -19,6 +19,8 @@ function getPluginIcon(iconType: string, className: string = "") {
       return <GitBranch className={`${className} text-green-500`} />;
     case 'checklist':
       return <CheckSquare className={`${className} text-purple-500`} />;
+    case 'Group':
+      return <Group className={`${className} text-yellow-500`} />;
     default:
       return null;
   }
@@ -67,6 +69,13 @@ export default function PluginsPage() {
       name: 'Checklist',
       description: 'Create a checklist to your tasks and track your progress',
       iconType: 'checklist',
+      installed: false
+    },
+    {
+      id: 'workgroup',
+      name: 'Workgroup',
+      description: 'Create a workgroup to your team and share your notes',
+      iconType: 'Group',
       installed: false
     }
   ];
@@ -131,7 +140,7 @@ export default function PluginsPage() {
   };
 
     return (
-    <div className="w-full h-screen flex flex-col p-5 overflow-hidden animaMini">
+    <div className="w-full h-screen flex flex-col p-5 overflow-hidden animao">
       <h1 className="text-4xl font-bold mb-8">Plugins</h1>
       
       {isMessage && (

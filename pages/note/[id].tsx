@@ -75,7 +75,7 @@ export default function NoteEditor() {
   }
 
   return (
-    <div className="flex flex-col md:h-screen p-5 animaMini">
+    <div className="flex flex-col md:h-screen p-5 animao">
       <div className="flex flex-col gap-4">
         <div className="flex self-start w-full justify-between items-start gap-2 md:items-center">
           <h1 className="font-semibold text-2xl">Edit note</h1>

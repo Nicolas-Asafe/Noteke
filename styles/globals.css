@@ -111,6 +111,7 @@ body {
 
 ::-webkit-scrollbar{
   width: 0px;
+  display: none;
 }
 
 .anima {
@@ -134,6 +135,14 @@ body {
   animation: AppearMini 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.tr{
+  transition: 0.1s ease;
+}
+
+.tr:hover{
+  transform: scale(0.96);
+}
+
 @keyframes AppearMini {
   from {
     opacity: 0;
@@ -144,6 +153,24 @@ body {
     opacity: 100%;
   }
 }
+@keyframes apo {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1);
+    opacity: 100%;
+  }
+}
+.ease{
+  transition: 0.3s ease;
+}
+
+.animao{
+  animation: apo 0.3s ease;
+}
+
 
 @layer utilities {
   .pb-safe {

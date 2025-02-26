@@ -53,7 +53,7 @@ export default function ChecklistPlugin() {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col p-5 overflow-hidden animaMini">
+    <div className="w-full h-screen flex flex-col p-5 overflow-hidden animao">
       <div className="flex justify-between items-center mb-8">
         <div className="flex items-center gap-3">
           <CheckSquare className="w-8 h-8 text-purple-500" />

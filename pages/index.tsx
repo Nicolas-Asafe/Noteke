@@ -244,7 +244,7 @@ export default function Home() {
     switch (item.type) {
       case 'note':
         return (
-              <div key={item.id} className="md:flex-col md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-zinc-900 rounded-lg shadow-md text-left">
+              <div key={item.id} className="md:flex-col md:justify-normal justify-between md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-zinc-900 rounded-lg shadow-md text-left">
                 <div className="flex flex-col w-10/12 md:w-full">
                  <h2 style={{ maxWidth: "calc(100% - 0px)", }} className="truncate text-2xl font-bold mb-2">{item.title || "Untitled"}</h2>
               <p style={{ maxWidth: "calc(100% - 0px)", }} className="h-28 md:h-auto pl-2 overflow-y-scroll p-1 border border-neutral-800 rounded-md text-lg text-zinc-400">{item.description || "No description available."}</p>
@@ -273,7 +273,7 @@ export default function Home() {
         );
       case 'table':
         return (
-              <div key={item.id} className="md:flex-col md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-neutral-900 rounded-lg shadow-md text-left">
+              <div key={item.id} className="md:flex-col md:justify-normal justify-between md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-neutral-900 rounded-lg shadow-md text-left">
                 <div className="flex flex-col w-10/12 md:w-full">
                   <div className="flex items-center gap-2">
                     <h2 className="truncate text-2xl font-bold">{item.title || "Untitled"}</h2>
@@ -305,9 +305,9 @@ export default function Home() {
         );
       case 'book':
         return (
-          <div key={item.id} className="md:flex-col md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-neutral-900 rounded-lg shadow-md text-left">
+          <div key={item.id} className="md:flex-col md:justify-normal justify-between md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-neutral-900 rounded-lg shadow-md text-left">
             <div className="flex flex-col w-10/12 md:w-full">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center  gap-2 ">
                 <Book className="w-6 h-6 text-blue-500" />
                 <h2 className="truncate text-2xl font-bold">{item.title || "Untitled"}</h2>
               </div>
@@ -315,7 +315,7 @@ export default function Home() {
                 {item.chapters?.length || 0} {item.chapters?.length === 1 ? 'capítulo' : 'capítulos'}
               </p>
             </div>
-            <div className="flex flex-col md:flex-row gap-2 border border-neutral-800 rounded-md p-2 w-auto">
+            <div className="flex flex-col md:flex-row gap-2  border border-neutral-800 rounded-md p-2 w-auto">
               <button
                 onClick={() => handleBookDelete(item.id)}
                 className="flex items-center bg-red-600 text-white font-semibold p-2 rounded-md hover:bg-red-700 transition"
@@ -333,7 +333,7 @@ export default function Home() {
         );
       case 'workflow':
         return (
-          <div key={item.id} className="md:flex-col md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-neutral-900 rounded-lg shadow-md text-left">
+          <div key={item.id} className="md:flex-col md:justify-normal justify-between md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-neutral-900 rounded-lg shadow-md text-left">
             <div className="flex flex-col w-10/12 md:w-full">
               <div className="flex items-center gap-2">
                 <GitBranch className="w-6 h-6 text-green-500" />
@@ -361,7 +361,7 @@ export default function Home() {
         );
       case 'checklist':
         return (
-          <div key={item.id} className="md:flex-col md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-neutral-900 rounded-lg shadow-md text-left">
+          <div key={item.id} className="md:flex-col md:justify-normal justify-between md:items-start flex gap-2 items-center p-4 bg-neutral-950 border w-auto border-neutral-900 rounded-lg shadow-md text-left">
             <div className="flex flex-col w-10/12 md:w-full">
               <div className="flex items-center gap-2">
                 <CheckSquare className="w-6 h-6 text-purple-500" />
@@ -401,7 +401,7 @@ export default function Home() {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col p-5 overflow-hidden animaMini">
+    <div className="w-full min-h-screen flex flex-col p-5 overflow-hidden animao">
       {isMessage && (
         <MessageContent 
           message={message} 
@@ -414,7 +414,7 @@ export default function Home() {
         <h1 className="font-semibold text-2xl md:text-3xl self-start">Your Orgs</h1>
         <button
           onClick={() => setIsSidebarOpen(true)}
-          className="bg-zinc-900 border border-neutral-800 p-2 rounded-md hover:border-neutral-500 hover:bg-zinc-800 transition flex items-center gap-2"
+          className="bg-zinc-900 tr border border-neutral-800 p-2 rounded-md hover:border-neutral-500 hover:bg-zinc-800 transition flex items-center gap-2"
         >
           <Plus size={24} />
         </button>
@@ -422,13 +422,13 @@ export default function Home() {
 
       {/* Sidebar para criar orgs */}
       <div 
-        className={`fixed inset-0 bg-black transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black transition-opacity  ease duration-10 ${
           isSidebarOpen ? 'bg-opacity-50' : 'bg-opacity-0 pointer-events-none'
         } z-40`} 
         onClick={() => setIsSidebarOpen(false)}
       >
         <div 
-          className={`fixed inset-y-0 right-0 w-[90%] md:w-80 bg-neutral-950 shadow-xl border-l border-neutral-800 transition-transform duration-300 transform ${
+          className={`fixed inset-y-0 right-0 w-[90%] md:w-80 bg-neutral-950 shadow-xl border-l border-neutral-800 transition-transform ease duration-30 transform ${
             isSidebarOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
           onClick={e => e.stopPropagation()}
@@ -447,7 +447,7 @@ export default function Home() {
             <div className="flex-1 overflow-y-auto p-4 space-y-3">
               <Link 
                 href="/NewTable"
-                className="w-full flex items-center gap-3 p-3 justify-between bg-zinc-900 rounded-lg border border-neutral-800 hover:border-neutral-700 transition-all"
+                className="w-full flex items-center gap-3 tr p-3 justify-between bg-zinc-900 rounded-lg border border-neutral-800 hover:border-neutral-700 transition-all"
                 onClick={() => setIsSidebarOpen(false)}
               >
                 <span className="font-semibold">New Table</span>
@@ -456,7 +456,7 @@ export default function Home() {
 
               <Link 
                 href="/NewNote"
-                className="w-full flex items-center gap-3 p-3 justify-between bg-zinc-900 rounded-lg border border-neutral-800 hover:border-neutral-700 transition-all"
+                className="w-full flex items-center gap-3 tr p-3 justify-between bg-zinc-900 rounded-lg border border-neutral-800 hover:border-neutral-700 transition-all"
                 onClick={() => setIsSidebarOpen(false)}
               >
                 <span className="font-semibold">New Note</span>
@@ -467,7 +467,7 @@ export default function Home() {
                 <Link
                   key={plugin.id}
                   href={`/${plugin.id}`}
-                  className="w-full flex items-center justify-between gap-3 p-3 bg-zinc-900 rounded-lg border border-neutral-800 hover:border-neutral-700 transition-all"
+                  className="w-full flex items-center tr justify-between gap-3 p-3 bg-zinc-900 rounded-lg border border-neutral-800 hover:border-neutral-700 transition-all"
                   onClick={() => setIsSidebarOpen(false)}
                 >
                   <span className="font-semibold">New {plugin.name}</span>
@@ -489,7 +489,7 @@ export default function Home() {
         <div className="h-[80dvh] overflow-y-auto px-0 md:px-4 animaMini">
           <div className="w-full md:max-w-2xl mx-auto space-y-4 mb-16">
             {allItems.map(item => (
-              <div key={item.id} className='transition-all'>
+              <div key={item.id} className='tr'>
                 {renderItem(item)}
               </div>
             ))}

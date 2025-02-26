@@ -85,7 +85,7 @@ export default function Home() {
   };
  
   return (
-    <div className="flex flex-col h-[calc(100vh-80px)] md:h-screen p-5 animaMini">
+    <div className="flex flex-col h-[calc(100vh-80px)] md:h-screen p-5 animao">
       <div className="flex flex-col gap-4 mb-2">
         <div className="flex md:flex-row flex-col justify-between items-start gap-2 md:items-center">
           <h1 className="font-semibold text-2xl">Create a new note here</h1>
@@ -103,12 +103,6 @@ export default function Home() {
               onClick={handleSave}
             >
               <Save />
-            </button>
-            <button 
-              className="bg-zinc-900 border border-neutral-800 p-2 rounded-md hover:border-neutral-500 hover:bg-zinc-800 transition" 
-              aria-label="Change cover"
-            >
-              <Image />
             </button>
           </div>
         </div>

@@ -32,7 +32,7 @@ export default function ViewTable() {
   if (!table) return <div>Carregando...</div>;
 
   return (
-    <div className="animaMini md:anima flex flex-col h-[86vh] p-5">
+    <div className="animao md:anima flex flex-col h-[86vh] p-5">
       <div className="flex flex-col gap-4 mb-4">
         <div className='flex justify-between items-center'>
           <h1 className="font-semibold text-2xl">{table.title}</h1>
