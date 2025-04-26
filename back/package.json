@@ -15,10 +15,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start":"node dist/app.js",
-    "dev":"node --watch dist/app.js",
-    "build":"tsc",
-    "devTSC":"tsc --watch"
+    "start": "node dist/app.js",
+    "dev": "node --watch dist/app.js",
+    "build": "tsc",
+    "devTSC": "tsc --watch"
   },
   "keywords": [],
   "author": "",
