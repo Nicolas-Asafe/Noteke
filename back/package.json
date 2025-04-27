@@ -9,14 +9,16 @@
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.13.3"
+    "mongoose": "^8.13.3",
+    "verifybody": "^1.0.7"
   },
   "name": "back",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/src/app.js",
+  "type": "commonjs",
   "scripts": {
-    "start": "node dist/app.js",
-    "dev": "node --watch dist/app.js",
+    "start": "node dist/src/app.js",
+    "dev": "node --watch dist/src/app.js",
     "build": "tsc",
     "devTSC": "tsc --watch"
   },

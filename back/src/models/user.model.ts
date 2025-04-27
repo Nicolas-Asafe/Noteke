@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const Schema = new mongoose.Schema({
     Name: {
         type: String,
-        required: true
+        required: true 
     },
     Password: {
         type: String,
