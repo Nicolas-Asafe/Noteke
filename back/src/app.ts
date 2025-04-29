@@ -5,6 +5,7 @@ import cors from "cors";
 
 
 import UserRouter from "./routers/users.routers";
+import OrgRouter from './routers/orgs.routers'
 
 dotenv.config();
 
@@ -47,6 +48,7 @@ const connectToDB = async () => {
 connectToDB();
 
 app.use(UserRouter)
+app.use(OrgRouter)
 
 app.listen(9000, () => {
     console.log("Server is running in https://localhost:9000");

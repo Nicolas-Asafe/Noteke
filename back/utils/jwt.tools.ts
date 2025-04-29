@@ -17,24 +17,19 @@ export function GenerateToken(user: any) {
     }
 }
 
+
 // Middleware de autenticação
 
 export const middleware = (req: any, res: any, next: any) => {
-    // Verificar se o token foi passado no cabeçalho Authorization
-    const token = req.headers['authorization']?.split(' ')[1]; // Pega o token após "Bearer"
-    console.log(token)
+    const token = req.headers['authorization']?.split(' ')[1];
     if (!token) {
-        return res.status(403).json({ message: 'Token não fornecido' });
+        return res.status(403).json({ message: 'Token is missing' });
     }
-
-    // Verificar e decodificar o token JWT
     jwt.verify(token, jwtkey, (err: any, decoded: any) => {
         if (err) {
-            return res.status(401).json({ message: 'Token inválido' });
+            return res.status(401).json({ message: 'Token invalid' });
         }
-
-        // Inserir o ID do usuário no req para uso posterior
-        req.id = decoded.id;  // O 'id' deve ser passado no payload do token
-        next();  // Passa para o próximo middleware ou rota
+        req.id = decoded.id;  
+        next(); 
     });
 };
