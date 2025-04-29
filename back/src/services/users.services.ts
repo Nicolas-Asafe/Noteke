@@ -6,7 +6,7 @@ import { ResponseType, buildResponse } from '../../utils/responses';
 import { GenerateToken } from "../../utils/jwt.tools";
 
 const verify = new Verify({});
-
+ 
 // Types
 type CreateUserType = { NameUser: string; Password: string };
 type DeleteUserType = { Password: string };
