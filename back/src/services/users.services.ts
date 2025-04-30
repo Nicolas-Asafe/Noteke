@@ -1,5 +1,5 @@
 import UserModel from "../models/user.model";
-import Verify from 'verifybody';
+import {Verify} from '../../utils/verifybody'
 import bcrypt from 'bcrypt';
 
 import { ResponseType, buildResponse } from '../../utils/responses';
