@@ -10,8 +10,13 @@
     "rootDir": "./",
     "resolveJsonModule": true
   },
-  "include": [ 
-    "src/**/*.ts"
+  "include": [
+    "src/**/*.ts",
+    "types/**/*"
+  ],
+  "typeRoots": [
+    "./node_modules/@types",
+    "./types"
   ],
   "exclude": [
     "node_modules",
