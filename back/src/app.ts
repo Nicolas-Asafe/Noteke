@@ -50,6 +50,10 @@ connectToDB();
 app.use(UserRouter)
 app.use(OrgRouter)
 
+app.get('/',(req,res)=>{
+    res.status(202).json({messge:"Welcome to the api of noteke",status:true})
+})
+
 app.listen(9000, () => {
     console.log("Server is running in https://localhost:9000");
 }); 
