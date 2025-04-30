@@ -4,10 +4,9 @@ import { middleware } from "../../utils/jwt.tools";
 
 const OrgRouter = Router()
 
-OrgRouter.use(middleware)
-OrgRouter.post('/NewOrg',NewOrg)
-OrgRouter.get('/ListOrgs',ListOrgs)
-OrgRouter.delete('/DeleteOrg',DeleteOrg)
-OrgRouter.put('/EditOrg',EditOrg)
+OrgRouter.post('/NewOrg',middleware,NewOrg)
+OrgRouter.get('/ListOrgs',middleware,ListOrgs)
+OrgRouter.delete('/DeleteOrg',middleware,DeleteOrg)
+OrgRouter.put('/EditOrg',middleware,EditOrg)
 
 export default OrgRouter
