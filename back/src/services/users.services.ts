@@ -17,7 +17,9 @@ const createUserSchema = { NameUser: '', Password: '' };
 const deleteUserSchema = { Password: '' };
 const loginUserSchema = { NameUser: '', Password: '' };
 
-// Create a new user
+//Metodos
+
+// Cria um novo usuário
 async function CreateUser(body: CreateUserType): Promise<ResponseType> {
     console.log(`[CreateUser] Triggered with data: ${JSON.stringify(body)}`);
 
@@ -48,7 +50,7 @@ async function CreateUser(body: CreateUserType): Promise<ResponseType> {
     }
 }
 
-// Get all users
+// Lista todos os usuários
 async function GetUsers(): Promise<ResponseType> {
     console.log(`[GetUsers] Fetching all users`);
 
@@ -62,7 +64,7 @@ async function GetUsers(): Promise<ResponseType> {
     }
 }
 
-// Delete user by ID
+// Deleta usuário por id
 async function DeleteUser(body: DeleteUserType, id: string): Promise<ResponseType> {
     console.log(`[DeleteUser] Attempting to delete user with ID: ${id}`);
 
@@ -100,7 +102,7 @@ async function DeleteUser(body: DeleteUserType, id: string): Promise<ResponseTyp
     }
 }
 
-// Authenticate user and generate JWT
+// Gera token baseado num body de login
 async function GetAuthOfUser(body: LoginUserType): Promise<ResponseType> {
     console.log(`[GetAuthOfUser] Login attempt for: ${body.NameUser}`);
 

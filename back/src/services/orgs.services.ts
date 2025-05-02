@@ -1,5 +1,5 @@
 import UserModel from "../models/user.model";
-import {Verify} from '../../utils/verifybody';
+import { Verify } from '../../utils/verifybody';
 import { buildResponse, ResponseType } from "../../utils/responses";
 import crypto from "crypto";
 
@@ -7,15 +7,18 @@ const verify = new Verify();
 
 // Types
 type OrgNoteType = { Name: string, Description: string };
-
 type BodyNewOrgType = { Body: OrgNoteType, Type: 'Note' };
-type BodyEditOrgType = { Body: OrgNoteType, OrgId: string }
+type BodyEditOrgType = { Body: OrgNoteType, OrgId: string };
 
 // Schemas
 const OrgNoteSchema = {
     Name: '',
     Description: '',
 };
+
+
+
+//metodos
 
 // Cria um org
 async function FromOrg_NewOrg(ParamBody: BodyNewOrgType, UserId: string): Promise<ResponseType> {
@@ -48,20 +51,23 @@ async function FromOrg_NewOrg(ParamBody: BodyNewOrgType, UserId: string): Promis
         return buildResponse(`Organization name "${ParamBody.Body.Name}" already exists. Please choose another.`, false);
     }
 
-    verify.NewBody(OrgNoteSchema);
-    const [msg, result] = verify.VerifyIfIsCorrect(ParamBody.Body);
-    if (!result) {
-        console.warn(`[FromOrg_NewOrg] Validation failed for organization body: ${msg}`);
-        return buildResponse(`Validation error: ${msg}`, false);
-    }
-
     const newOrgId = crypto.randomUUID();
-    User.Orgs.push({
-        Name: ParamBody.Body.Name,
-        Description: ParamBody.Body.Description,
-        TypeOrg: ParamBody.Type,
-        Id: newOrgId
-    });
+    switch (ParamBody.Type) {
+        case 'Note':
+            verify.NewBody(OrgNoteSchema);
+            const [msg, result] = verify.VerifyIfIsCorrect(ParamBody.Body);
+            if (!result) {
+                console.warn(`[FromOrg_NewOrg] Validation failed for organization body: ${msg}`);
+                return buildResponse(`Validation error: ${msg}`, false);
+            }
+
+            User.Orgs.push({
+                Name: ParamBody.Body.Name,
+                Description: ParamBody.Body.Description,
+                TypeOrg: ParamBody.Type,
+                Id: newOrgId
+            });
+    }
 
     await User.save();
 
@@ -155,7 +161,5 @@ async function FromOrg_EditOrg(UserId: string, ParamBody: BodyEditOrgType): Prom
     console.log(`[FromOrg_EditOrg] Org "${ParamBody.OrgId}" edited successfully for user ${UserId}`);
     return buildResponse(`Organization "${currentOrg.Name}" updated successfully.`, true);
 }
-
-
 
 export { FromOrg_NewOrg, FromOrg_ListMyOrgs, FromOrg_DeleteOrg, FromOrg_EditOrg };
