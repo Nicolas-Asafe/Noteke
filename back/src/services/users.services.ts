@@ -32,8 +32,8 @@ async function CreateUser(body: CreateUserType): Promise<ResponseType> {
 
     const userExists = await UserModel.findOne({ Name: body.NameUser });
     if (userExists) {
-        console.warn(`[CreateUser] User already exists: ${body.NameUser}`);
-        return buildResponse('User already exists', false);
+        console.warn(`[CreateUser] User name already exists: ${body.NameUser}`);
+        return buildResponse('User name already exists', false);
     }
 
     try {
