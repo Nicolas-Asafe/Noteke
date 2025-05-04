@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 
-const publicRoutes = ['/Login', '/Register']
+const publicRoutes = ['/Login', '/Register','/']
 
 export function middleware(request) {
   const path = request.nextUrl.pathname
@@ -11,7 +11,7 @@ export function middleware(request) {
 
   // Usuário não está logado e tenta acessar rota privada → redireciona
   if (!authToken && !isPublic) {
-    return NextResponse.redirect(new URL('/Login', request.url))
+    return NextResponse.redirect(new URL('/', request.url))
   }
 
   // Usuário está logado e tenta acessar rota pública → redireciona pro dashboard

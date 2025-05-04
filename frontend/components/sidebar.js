@@ -1,22 +1,39 @@
 import styles from "@/styles/sidebar.module.css"; 
 import Link from "next/link";
-import { Trash2, Home, Plug, BookCopy } from "lucide-react";
-export default function Sidebar({ allItems, handleItemClick, handleDelete }) {
+import { Trash2, DoorOpen, BookCopy, Copy,CircleUser, Settings } from "lucide-react";
+import Cookies from "js-cookie";
+import ResponseMessage from "./responseMessage";
+export default function Sidebar({ allItems, handleItemClick, handleDelete,message }) {
   return (
-    <div className={styles.sidebar}>
+    <div className={`${styles.sidebar} AnimaAppear1`}>
       <header>
         <h1>Noteke</h1>
       </header>
 
       <section>
         <div className={styles["nav-links"]}>
+        <ResponseMessage  status={message.status} msg={message.message || 'Wait a seconds ...'}/>
+
           <Link href="/home" className={styles["nav-link"]}>
-            Go Home
-            <Home size={30} className={styles.icon} />
+             My orgs
+            <Copy size={30} className={styles.icon} />
+          </Link>
+          <Link href="/docs" className={styles["nav-link"]}>
+             My account
+            <CircleUser size={30} className={styles.icon} />
           </Link>
           <Link href="/docs" className={styles["nav-link"]}>
             Documents
             <BookCopy size={30} className={styles.icon} />
+          </Link>
+          <Link href="/docs" className={styles["nav-link"]}>
+             Preferences
+            <Settings size={30} className={styles.icon} />
+          </Link>
+          <Link href="/" onClick={()=>Cookies.remove('token')} className={styles["nav-link"]}>
+            Exit
+            <DoorOpen size={30} className={styles.icon} />
+            
           </Link>
         </div>
 

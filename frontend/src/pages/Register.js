@@ -1,29 +1,36 @@
 "use client"
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import ResponseMessage from "../../components/responseMessage";
+import { useState, useEffect } from "react";
+
+import dotenv from 'dotenv'
+dotenv.config
 
 export default function Home() {
 
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
-  const [returnText, setReturnText] = useState({message:'Create a user here',status:''})
+  const [returnText, setReturnText] = useState({ message: 'Create a user here', status: '' })
   async function RegisterUser(e) {
     e.preventDefault()
     let user = name && password ? {
-      NameUser:name,
-      Password:password
+      NameUser: name,
+      Password: password
     } : undefined
-    const res = await fetch('https://noteke-api-bfct.onrender.com/NewUser',{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'x-api-key':'Nicolas_7025081098'
+   try{
+    const res = await fetch('https://noteke-api-bfct.onrender.com/NewUser', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': process.env.NEXT_PUBLIC_KEYACCESS
       },
-      body:JSON.stringify(user)
+      body: JSON.stringify(user)
     })
     const json = await res.json()
     setReturnText(json)
+   }catch(err){
+    setReturnText(json)
+   }
   }
 
   return (
@@ -48,7 +55,7 @@ export default function Home() {
 
           <Link href={'/Login'}>go to login</Link>
         </form>
-          <ResponseMessage msg={returnText.message} status={returnText.status}></ResponseMessage>
+        <ResponseMessage msg={returnText.message} status={returnText.status}></ResponseMessage>
       </div>
     </>
   );

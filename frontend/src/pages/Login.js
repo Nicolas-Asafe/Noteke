@@ -1,8 +1,10 @@
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import ResponseMessage from "../../components/responseMessage";
 import Router from "next/router";
 import Cookies from "js-cookie";
+import dotenv from 'dotenv'
+dotenv.config
 export default function Home() {
 
   const [name, setName] = useState('')
@@ -18,17 +20,20 @@ export default function Home() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "x-api-key": "Nicolas_7025081098",
+            'x-api-key': process.env.NEXT_PUBLIC_KEYACCESS          
           },
           body: JSON.stringify({ NameUser: name, Password: password }),
         }
       );
       const json = await res.json();
+      console.log(json)
+
       const token = Array.isArray(json.token) ? json.token[0] : json.token;
       if (token && typeof token === "string" && token.includes(".")) {
-        localStorage.setItem("token", token);
+        setReturnText(json)
+        localStorage.setItem("token", token);  
         Cookies.set('token',token)
-        Router.replace("/home");
+        Router.replace("/home");  
       } else {
         setReturnText(json)
       }

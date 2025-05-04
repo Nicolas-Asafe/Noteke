@@ -5,6 +5,7 @@
     height: 100vh;
     border-right: 1px solid #27272a;
     display: none;
+    font-weight: 450;
   }
   
   @media (min-width: 768px) {
@@ -36,6 +37,7 @@
     margin-bottom: 1rem;
     overflow-y: auto;
     display: flex;
+    font-size: 14px;
     flex-direction: column;
     gap: 0.5rem;
   }
@@ -51,11 +53,15 @@
     border: 1px solid #262626;
     text-decoration: none;
     transition: all 0.2s ease;
+    a{
+      font-weight: 500;
+    }
   }
   
   .nav-link:hover {
     background-color: #27272a;
     border-color: #737373;
+    transform: scale(0.9);
   }
   
   .icon {
@@ -71,7 +77,7 @@
   .org-list > p {
     color: #e2e8f0;
     font-weight: 600;
-    padding: 0.75rem;
+    padding: 10px;
     border-bottom: 1px solid #262626;
   }
   
@@ -91,6 +97,7 @@
     background-color: #0a0a0a;
     color: #a1a1aa;
     border-radius: 0.5rem;
+    font-size: 13px;
     border: 1px solid #262626;
     cursor: pointer;
     transition: all 0.2s;
@@ -99,22 +106,23 @@
   .org-list li:hover {
     background-color: #27272a;
     border-color: #52525b;
+    transform: scale(0.9);
   }
   
   .org-list li span {
-    padding: 0.5rem;
+    padding: 0px 10px;
     display: flex;
     align-items: center;
     font-weight: normal;
-    max-width: calc(100% - 50px);
+    max-width: calc(100% - 35px);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
   
   .subtype {
-    font-size: 0.75rem;
-    margin-left: 0.5rem;
+    font-size: 10px;
+    margin-left: 0px;
     color: #71717a;
   }
   
@@ -133,6 +141,7 @@
   
   .no-orgs {
     color: #a1a1aa;
+    font-size: 13px;
   }
   
   .credits {
